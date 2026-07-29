@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite thread-count="4" parallel="classes" name="Failed suite [Parallel Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="4" parallel="classes" name="All Tests(failed)">
+    <classes>
+      <class name="Organization_Module.OrganizationGeneralInfoTest">
+        <methods>
+          <include name="InvalidPhoneNumberTest"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="InvalidEmailTest"/>
+          <include name="OrganizationNameTest"/>
+          <include name="setUpPage"/>
+          <include name="InvalidBlankEditTest"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationGeneralInfoTest -->
+      <class name="Organization_Module.OrganizationLocationsTest">
+        <methods>
+          <include name="ValidAddTest"/>
+          <include name="inValidSearch"/>
+          <include name="ResetTest"/>
+          <include name="ValidSearch"/>
+          <include name="ValidNameSearch"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="setUpPage"/>
+          <include name="ValidCitySearch"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationsTest -->
+      <class name="Organization_Module.OrganizationLocationEditTest">
+        <methods>
+          <include name="inValidEditTest"/>
+          <include name="setup"/>
+          <include name="setUpPage"/>
+          <include name="CancelTest"/>
+          <include name="tearDown"/>
+          <include name="ValidEditTest"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationEditTest -->
+      <class name="Job_Module.WorkShiftsTest">
+        <methods>
+          <include name="setupClass"/>
+          <include name="smallPause"/>
+          <include name="cleanup"/>
+          <include name="editDayShiftToDayShift2"/>
+          <include name="addOvernightWorkShift_bugShowsError"/>
+          <include name="cannotAddWithMissingMandatoryFields"/>
+          <include name="deleteMultipleWorkShifts"/>
+          <include name="addValidWorkShift"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="cannotAddDuplicateName"/>
+          <include name="deleteSingleWorkShift"/>
+        </methods>
+      </class> <!-- Job_Module.WorkShiftsTest -->
+      <class name="User_Management_Module.UserManagementTest">
+        <methods>
+          <include name="deleteUser"/>
+          <include name="checkUniqueUserName"/>
+          <include name="checkRequiredFields"/>
+          <include name="setUpPage"/>
+          <include name="editUser"/>
+          <include name="setup"/>
+          <include name="searchUser"/>
+          <include name="addUser"/>
+          <include name="checkPassword"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- User_Management_Module.UserManagementTest -->
+      <class name="Job_Module.EmploymentStatusTest">
+        <methods>
+          <include name="setup"/>
+          <include name="testDeleteEmploymentStatus"/>
+          <include name="testEditEmploymentStatus"/>
+          <include name="tearDown"/>
+          <include name="testAddEmploymentStatus"/>
+          <include name="initialize"/>
+        </methods>
+      </class> <!-- Job_Module.EmploymentStatusTest -->
+      <class name="PIM_Module.AddEmployeeTest">
+        <methods>
+          <include name="validAddEmployee"/>
+          <include name="invalidAddEmployeeWithBlankFields"/>
+          <include name="setUpPages"/>
+          <include name="invalidAddEmployeeWithTooLargeData"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="cancelAddEmployeeTest"/>
+        </methods>
+      </class> <!-- PIM_Module.AddEmployeeTest -->
+      <class name="Job_Module.PayGradesTest">
+        <methods>
+          <include name="verifyNegativeSalaryWarning"/>
+          <include name="editPayGradeName"/>
+          <include name="deleteAllCurrencies"/>
+          <include name="addPayGrade"/>
+          <include name="editCurrencyDetails"/>
+          <include name="deleteAllPayGrades"/>
+          <include name="verifyInvalidSalaryWarning"/>
+          <include name="setUpPage"/>
+          <include name="setup"/>
+          <include name="checkRequiredFields"/>
+          <include name="deleteOnePayGrade"/>
+          <include name="tearDown"/>
+          <include name="deleteOneCurrency"/>
+        </methods>
+      </class> <!-- Job_Module.PayGradesTest -->
+      <class name="Organization_Module.OrganizationLOcationDeleteTest">
+        <methods>
+          <include name="ValidAddTest"/>
+          <include name="ValidAddTest2"/>
+          <include name="DeleteAllRecordsTest"/>
+          <include name="setUpPage"/>
+          <include name="CancelTest"/>
+          <include name="DeleteTest"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="DeleteMultipleTest"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLOcationDeleteTest -->
+      <class name="Job_Module.JobCategoriesTest">
+        <methods>
+          <include name="testDuplicateJobCategoryNotAllowed"/>
+          <include name="testSpecialCharactersInJobCategory"/>
+          <include name="testAddJobCategoryValidInput"/>
+          <include name="testDeleteSingleJobCategory"/>
+          <include name="testDeleteMultipleJobCategories"/>
+          <include name="setup"/>
+          <include name="testEditJobCategory"/>
+          <include name="initialize"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Job_Module.JobCategoriesTest -->
+      <class name="Job_Module.JobTitlesTest">
+        <methods>
+          <include name="checkRequiredFields"/>
+          <include name="setUpPage"/>
+          <include name="addJobTitle"/>
+          <include name="setup"/>
+          <include name="deleteAllJobs"/>
+          <include name="tearDown"/>
+          <include name="editJobTitle"/>
+          <include name="deleteJob"/>
+        </methods>
+      </class> <!-- Job_Module.JobTitlesTest -->
+      <class name="Organization_Module.OrganizationLocationAddTest">
+        <methods>
+          <include name="ValidAddTest"/>
+          <include name="setUpPage"/>
+          <include name="DuplicateAddTest"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="inValidAddTest"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationAddTest -->
+    </classes>
+  </test> <!-- All Tests(failed) -->
+</suite> <!-- Failed suite [Parallel Suite] -->

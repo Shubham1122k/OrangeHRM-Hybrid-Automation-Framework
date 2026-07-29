@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Suite]">
+  <listeners>
+    <listener class-name="listeners.TestListener"/>
+  </listeners>
+  <test thread-count="5" name="Test(failed)">
+    <classes>
+      <class name="Job_Module.JobTitlesTest">
+        <methods>
+          <include name="setUpPage"/>
+          <include name="addJobTitle"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Job_Module.JobTitlesTest -->
+      <class name="Job_Module.EmploymentStatusTest">
+        <methods>
+          <include name="setupClass"/>
+          <include name="waitBetweenTests"/>
+          <include name="testDuplicateEmploymentStatusNotAllowed"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Job_Module.EmploymentStatusTest -->
+      <class name="Organization_Module.OrganizationLocationEditTest">
+        <methods>
+          <include name="inValidEditTest"/>
+          <include name="setup"/>
+          <include name="setUpPage"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationEditTest -->
+      <class name="Organization_Module.OrganizationGeneralInfoTest">
+        <methods>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="InvalidEmailTest"/>
+          <include name="InvalidBlankEditTest"/>
+          <include name="setUpPage"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationGeneralInfoTest -->
+      <class name="Organization_Module.OrganizationLocationsTest">
+        <methods>
+          <include name="ValidSearch"/>
+          <include name="ValidNameSearch"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="setUpPage"/>
+          <include name="ValidCitySearch"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationsTest -->
+      <class name="Organization_Module.OrganizationLocationAddTest">
+        <methods>
+          <include name="setUpPage"/>
+          <include name="setup"/>
+          <include name="tearDown"/>
+          <include name="inValidAddTest"/>
+        </methods>
+      </class> <!-- Organization_Module.OrganizationLocationAddTest -->
+    </classes>
+  </test> <!-- Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
