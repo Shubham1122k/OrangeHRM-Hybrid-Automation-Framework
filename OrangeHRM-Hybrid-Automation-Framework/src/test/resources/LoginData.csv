@@ -1,5 +1,0 @@
-user name,password,expected
-Admin,test123,Invalid credentials
-test,admin123,Invalid credentials
-,,Invalid credentials
-Admin,admin123,Dashboard

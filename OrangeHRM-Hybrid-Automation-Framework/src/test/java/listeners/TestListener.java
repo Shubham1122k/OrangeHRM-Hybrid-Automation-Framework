@@ -5,15 +5,15 @@ package listeners;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import utilities.ScreenshotUtil;
-import QABootcamp_Maven.OrangeHRM.TestBase;
+import baseTest.TestBase;
+import utilities.ScreenshotUtils;
 
 public class TestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
 
-    	ScreenshotUtil.captureScreenshot(
+    	ScreenshotUtils.captureScreenshot(
     	        TestBase.getDriver(),
     	        result.getName()
     	);
