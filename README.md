@@ -3,29 +3,26 @@ OrangeHRM Hybrid Automation Framework
 
 This project is a Hybrid Test Automation Framework developed for the OrangeHRM Demo Application using Selenium WebDriver, Java, and TestNG. It follows the Page Object Model (POM) design pattern and supports Data-Driven Testing, reusable utilities, and parallel execution.
 
-🚀 Technologies Used
-Java 17
-Selenium WebDriver
-TestNG
-Maven
-Apache POI (Excel)
-WebDriverManager
+🚀 Technologies Used :-
+Java 17 | Selenium WebDriver 4.25.0 | TestNG 7.11.0 | Maven.
+Apache POI 5.2.5(Excel)
+WebDriverManager 5.9.2
 Page Object Model (POM)
 ThreadLocal WebDriver
 Git & GitHub
 
-📂 Framework Features
-Page Object Model (POM)
-Hybrid Framework Architecture
-Data-Driven Testing using Excel
-Parallel Test Execution
-ThreadLocal WebDriver
-Reusable Base Page
-Reusable Browser Utilities
-Explicit Waits
-Cross Browser Ready
-Maven Build Management
-TestNG Reports
+📂 Framework Features :- 
+Page Object Model (POM), 
+Hybrid Framework Architecture,
+Data-Driven Testing using Excel,
+Parallel Test Execution,
+ThreadLocal WebDriver,
+Reusable Base Page and Test Page,
+Reusable Browser Utilities,
+Explicit Waits,
+Cross Browser Ready,
+Maven Build Management,
+TestNG Reports,
 
 🧪 Test Scenarios Automated
 ***Login Module***
@@ -80,14 +77,14 @@ src
         └── userManagementModule
 
 
-▶️ How to Execute
-Clone Repository
+▶️ How to Execute :- 
+Clone Repository --
 git clone https://github.com/Shubham1122k/OrangeHRM-Hybrid-Automation-Framework.git
 
-Import Project
+Import Project--
 Import as an Existing Maven Project into Eclipse.
 
-Execute Tests
+Execute Tests--
 
 Run
 testng.xml
@@ -95,7 +92,7 @@ testng.xml
 or execute using Maven
 mvn clean test
 
-⭐ Future Enhancements
+⭐ Future Enhancements :-
 Jenkins CI/CD Integration
 Extent Reports
 Allure Reports
