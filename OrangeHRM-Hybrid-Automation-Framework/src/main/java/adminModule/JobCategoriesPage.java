@@ -13,10 +13,12 @@ public class JobCategoriesPage extends BasePage {
 	    }
 	
 
-	    // Locators
+	    //Navigation
 	    private By adminMenu = By.xpath("//span[text()='Admin']");
 	    private By jobMenu = By.xpath("//span[text()='Job ']");
 	    private By jobCategoriesMenu = By.xpath("//*[@id=\"app\"]/div[1]/div[1]/header/div[2]/nav/ul/li[2]/ul/li[4]/a");
+	    
+	    //Locators and Buttons	    
 	    private By addBtn = By.xpath("//button[normalize-space()='Add']");
 	    private By nameField = By.xpath("//label[text()='Name']/../following-sibling::div/input");
 	    private By saveBtn = By.xpath("//button[normalize-space()='Save']");
@@ -24,14 +26,13 @@ public class JobCategoriesPage extends BasePage {
 	    private By alreadyExistsError = By.xpath("//*[@id='app']/div[1]/div[2]/div[2]/div/div/form/div[1]/div/span");
 	    private By successToast = By.xpath("//p[contains(@class,'oxd-text--toast-title')]");
 
-	    // Navigate to Job Categories
+	    // Navigate to Job Categories menu
 	    public void goToJobCategories() {
-	        wait.until(ExpectedConditions.elementToBeClickable(adminMenu)).click();
-	        wait.until(ExpectedConditions.elementToBeClickable(jobMenu)).click();
-	        wait.until(ExpectedConditions.elementToBeClickable(jobCategoriesMenu)).click();
+	        click(adminMenu);
+	        click(jobMenu);
+	        click(jobCategoriesMenu);
 	    }
 	    
-
 	    // Add Job Category
 	    public void addJobCategory(String name) {
 	    	
@@ -55,7 +56,7 @@ public class JobCategoriesPage extends BasePage {
 	        nameInput.sendKeys(Keys.DELETE);
 	        nameInput.sendKeys(newName);
 
-	        wait.until(ExpectedConditions.elementToBeClickable(saveBtn)).click();
+	        click(saveBtn);
 	    }
 
 

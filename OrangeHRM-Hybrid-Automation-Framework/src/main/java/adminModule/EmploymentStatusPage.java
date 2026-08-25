@@ -29,17 +29,16 @@ public class EmploymentStatusPage extends BasePage{
 	    private By nameField = By.xpath("//label[text()='Name']/following::input[1]");
 	    private By saveBtn = By.xpath("//button[normalize-space()='Save']");
 	    private By successToast = By.xpath("//*[@id='oxd-toaster_1']");
-	    private By requiredError = By.xpath("//span[text()='Required']");
-	    
+	    private By requiredError = By.xpath("//span[text()='Required']");   
 	    private By confirmDeleteBtn = By.xpath("//button[@type='button' and normalize-space()='Yes, Delete']");
 	    private By deleteSelectedBtn = By.xpath("//button[normalize-space()='Delete Selected']");
 
-	    // Navigate to Employment Status page
+	    // Navigate to Employment Status menu
 	    public void goToEmploymentStatus() {
 	    	
-	        wait.until(ExpectedConditions.elementToBeClickable(adminMenu)).click();
+	    	click(adminMenu);
 	    	click(jobMenu);
-	        click(empStatusMenu);
+	    	click(empStatusMenu);
 	    }
 
 	   

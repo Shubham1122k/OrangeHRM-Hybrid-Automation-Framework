@@ -1,54 +1,70 @@
 package organizationTest;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import baseTest.TestBase;
+import loginModule.LogIn;
 import organizationModule.OrganizationGeneralInfo;
 
 public class OrganizationGeneralInfoTest extends TestBase {
-	private OrganizationGeneralInfo Organization;
+	
+	private LogIn login;
+	private OrganizationGeneralInfo organization;
 
-	@BeforeClass
+	@BeforeMethod(alwaysRun = true)
 	public void setUpPage() {
-		Organization = new OrganizationGeneralInfo(getDriver());
 		
+	    organization = new OrganizationGeneralInfo(getDriver());
+	    loginAsAdmin();
+	    
+	    
 	}
 
-
-
-	@Test(priority = 4, description = "Verify edit organizationName")
+	@Test(description = "Verify edit organizationName")
 	public void OrganizationNameTest() {
-		Organization.openGeneralInformationForm();
-		Organization.editOrganizatioName("AXSOS2");
-		Organization.saveEdit();
-		Assert.assertTrue(Organization.getSuccessMessage().contains("Successfully Updated"));
+		organization.openGeneralInformationForm();
+		organization.editOrganizatioName("AXSOS2");
+		organization.saveEdit();
+		Assert.assertTrue(organization.getSuccessMessage().contains("Successfully Updated"));
 
 	}
-	@Test(priority = 3, description = "Verify invalid phone Number")
+	@Test(description = "Verify invalid phone Number")
 	public void InvalidPhoneNumberTest() {
-		Organization.openGeneralInformationForm();
-		Organization.editNote("phone");
-		Organization.saveEdit();
-		Assert.assertTrue(Organization.isinvalidPhoneFormat());
 
+	    organization.openGeneralInformationForm();
+
+	    organization.editPhone("phone");
+
+	    organization.saveEdit();
+
+	    Assert.assertTrue(
+	        organization.isinvalidPhoneFormat()
+	    );
 	}
 	
-	@Test(priority = 2, description = "Verify invalidEmail")
-	public void InvalidEmailTest() {
-		Organization.openGeneralInformationForm();
-		Organization.editEmail("test222");
-		Organization.saveEdit();
-		Assert.assertTrue(Organization.isinvalidFormatDisplayed());
+	@Test(description = "Verify invalidEmail")
+	public void InvalidEmailTest() throws InterruptedException {
 
+		organization.openGeneralInformationForm();
+
+		organization.editEmail("abc");
+
+		organization.saveEdit();
+
+		Assert.assertTrue(
+		        organization.isinvalidFormatDisplayed(),
+		        "Invalid email error message was not displayed"
+		);
 	}
-	@Test(priority = 1, description = "Verify admin can edit general information by leave required field empty")
+	
+	@Test(description = "Verify admin can edit general information by leave required field empty")
 	public void InvalidBlankEditTest() {
-		Organization.openGeneralInformationForm();
-		Organization.editOrganizatioName("");
-		Organization.saveEdit();
-		Assert.assertTrue(Organization.isErrorMessageDisplayed());
+		organization.openGeneralInformationForm();
+		organization.editOrganizatioName("");
+		organization.saveEdit();
+		Assert.assertTrue(organization.isErrorMessageDisplayed());
 
 	}
 	

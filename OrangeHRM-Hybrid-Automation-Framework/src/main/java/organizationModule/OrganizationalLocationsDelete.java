@@ -10,7 +10,7 @@ import base.BasePage;
 public class OrganizationalLocationsDelete extends BasePage {
 	
 
-	private By adminElement = By .xpath("//a//span[text()=\"Admin\"]");
+	private By adminElement = By .xpath("//span[text()='Admin']");
 			
 	private By organizationButton = By
 			.xpath("//li[contains(@class,'oxd-topbar-body-nav-tab')][.//span[normalize-space()='Organization']]");
@@ -39,6 +39,17 @@ public class OrganizationalLocationsDelete extends BasePage {
 		wait.until(ExpectedConditions.numberOfElementsToBeMoreThan(deleteButton, index));
 		driver.findElements(deleteButton).get(index).click();
 	}
+	
+	public void clickDeleteButtonByName(String locationName) {
+
+	    By deleteButton = By.xpath(
+	        "//div[@class='oxd-table-row']" +
+	        "[.//div[contains(@class,'oxd-table-cell')][normalize-space()='" + locationName + "']]" +
+	        "//i[contains(@class,'bi-trash')]"
+	    );
+
+	    wait.until(ExpectedConditions.elementToBeClickable(deleteButton)).click();
+	}
 
 	public void ConfirmDelete() {
 		wait.until(ExpectedConditions.elementToBeClickable(confirmDelete)).click();
@@ -65,6 +76,18 @@ public class OrganizationalLocationsDelete extends BasePage {
 		driver.findElements(checkBox).get(index).click();
 
 	}
+	
+
+	public void SelectRecordByName(String locationName) {
+
+	    By locationCheckbox = By.xpath(
+	        "//div[@class='oxd-table-row']" +
+	        "[.//div[contains(@class,'oxd-table-cell')][normalize-space()='" + locationName + "']]" +
+	        "//i[contains(@class,'oxd-checkbox-input-icon')]"
+	    );
+
+	    wait.until(ExpectedConditions.elementToBeClickable(locationCheckbox)).click();
+	}
 	public void SelectAllChecBox() {
 		wait.until(ExpectedConditions.elementToBeClickable(allCheckBox)).click();
 
@@ -78,5 +101,7 @@ public class OrganizationalLocationsDelete extends BasePage {
 		WebElement checkbox = wait.until(ExpectedConditions.visibilityOfElementLocated(checkBox));
 		return checkbox.isSelected();
 	}
-
+	
+	
+	
 }

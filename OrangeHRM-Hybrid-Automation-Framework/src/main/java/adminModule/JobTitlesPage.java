@@ -17,26 +17,29 @@ public class JobTitlesPage extends BasePage{
     public JobTitlesPage(WebDriver driver) {
         super(driver);
     }
-    private By adminMenu = By.xpath("//span[text()='Admin']");
+    
+    //Navigation
+    private final By adminMenu = By.xpath("//span[text()='Admin']");
     private final By jobMenu        = By.xpath("//span[@class='oxd-topbar-body-nav-tab-item' and normalize-space()='Job']");
     private final By jobTitlesMenu  = By.xpath("//li[normalize-space()='Job Titles'] | //a[normalize-space()='Job Titles']");
+    
+    //locators and Buttons
     private final By addBtn         = By.xpath("//button[normalize-space()='Add']");
     private final By saveBtn        = By.xpath("//button[normalize-space()='Save']");
-    private By successToast   = By.xpath("//div[contains(@class,'oxd-toast') and .//p[normalize-space()='Success']]");
-    private By jobTitleField  = By.xpath("(//input[contains(@class,'oxd-input--active')])[2]");
-    private By jobDescription = By.xpath("(//textarea[contains(@class,'oxd-textarea--active')])[1]");
-    private By jobNote        = By.xpath("(//textarea[@placeholder='Add note'])[1]");
-    private By fileInput      = By.xpath("//input[@type='file']");
-	private By cancel = By.xpath("//button[normalize-space()='Cancel']");
+    private final By successToast   = By.xpath("//div[contains(@class,'oxd-toast') and .//p[normalize-space()='Success']]");
+    private final By jobTitleField  = By.xpath("(//input[contains(@class,'oxd-input--active')])[2]");
+    private final By jobDescription = By.xpath("(//textarea[contains(@class,'oxd-textarea--active')])[1]");
+    private final By jobNote        = By.xpath("(//textarea[@placeholder='Add note'])[1]");
+    private final By fileInput      = By.xpath("//input[@type='file']");
+	private final By cancel = By.xpath("//button[normalize-space()='Cancel']");
 	private final By confirmDeleteBtn = By.xpath("//button[normalize-space()='Yes, Delete']");
-
 	private final By deleteSelectedBtn = By.xpath("//button[normalize-space()='Delete Selected']");
-	        
-	// Navigate to Job Title
+   
+	// Navigate to Job Title menu
     public void goToJobTitle() {
-        wait.until(ExpectedConditions.elementToBeClickable(adminMenu)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(jobMenu)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(jobTitlesMenu)).click();
+    	click(adminMenu);
+    	click(jobMenu);
+    	click(jobTitlesMenu);
     }
     
 	private By editButton(int index) {
@@ -96,8 +99,11 @@ public class JobTitlesPage extends BasePage{
     
     
     public boolean isJobTitlePresent(String title, String desc) {
-        By row = By.xpath("//div[@role='row' and .//div[text()='"+title+"'] and .//div[text()='"+desc+"']]");
-        return isDisplayed(row);
+    	By row = By.xpath(
+    		    "//div[@role='row' and .//div[normalize-space()='" + title +
+    		    "'] and .//div[normalize-space()='" + desc + "']]"
+    		); 
+    	return isDisplayed(row);
     }
 
     // delete job title

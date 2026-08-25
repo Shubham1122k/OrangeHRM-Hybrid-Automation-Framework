@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import adminModule.EmploymentStatusPage;
 import baseTest.TestBase;
 import loginModule.LogIn;
+import utilities.ConfigReader;
 
 public class EmploymentStatusTest extends TestBase {
 
@@ -16,18 +17,12 @@ public class EmploymentStatusTest extends TestBase {
     private EmploymentStatusPage empStatusPage;
 
     @BeforeMethod
-    public void initialize() {
-
-        login = new LogIn(getDriver());
-
-        empStatusPage = new EmploymentStatusPage(getDriver());
-
-        login.Login("Admin", "admin123");
-
-        Assert.assertTrue(login.isLogedIn(), "Login Failed");
-
-        empStatusPage.goToEmploymentStatus();
-    }
+	    public void initialize() {
+	
+	        empStatusPage = new EmploymentStatusPage(getDriver());
+	        loginAsAdmin();
+	        empStatusPage.goToEmploymentStatus();
+	    }
 
     @Test
     public void testAddEmploymentStatus() {

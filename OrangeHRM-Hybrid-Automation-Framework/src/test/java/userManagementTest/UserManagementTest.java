@@ -10,8 +10,6 @@ import userManagement.UserManagement;
 
 public class UserManagementTest extends TestBase {
 	
-
-	private LogIn login;
     private UserManagement userManagement;
 
     @BeforeMethod
@@ -23,7 +21,7 @@ public class UserManagementTest extends TestBase {
     }
 
     // Here we first store UserName in variable username and then add this user.
-    // Then we search the  same user weather we find it or not.    
+    // Then we search the  same user weather we find it or not to test the testcases below   
 	@Test(description = "TC-05 Verify search works correctly")
 	public void searchUser() throws InterruptedException {
 

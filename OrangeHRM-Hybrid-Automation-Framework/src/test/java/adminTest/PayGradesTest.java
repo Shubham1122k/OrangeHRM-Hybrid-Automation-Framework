@@ -7,147 +7,296 @@ import org.testng.annotations.Test;
 import adminModule.JobTitlesPage;
 import adminModule.PayGradesPage;
 import baseTest.TestBase;
+import loginModule.LogIn;
+import utilities.ConfigReader;
 
 public class PayGradesTest extends TestBase {
+	
+	private LogIn login;
     PayGradesPage payGrades;
 
-    private final String gradeName      = "final1232";
-    private final String minSalary      = "1200";
-    private final String maxSalary      = "2400";
+    private final String gradeNamee      = "final123";
+    private final int indx      		 	= 2;
+    private final String minSalaryy      = "1200";
+    private final String maxSalaryy      = "2400";
 
     @BeforeMethod
-    public void setUpPage() {
-        payGrades = new PayGradesPage(getDriver());
-       
-    }
+    public void initialize()  {
 
-
-    @Test(priority = 0, description = "TC-18+19 Add valid pay grade+Add currency to pay grade")
-    public void addPayGrade() {
-       
-
-        payGrades.clickJobMenu();
-        payGrades.clickPayGradesMenu();
-        payGrades.addPayGrade(gradeName, 2, minSalary, maxSalary);
-
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Pay Grade not saved");
-    }
-
-    @Test(priority = 1, description = "TC-02 Verify required field validation on Add Pay Grade")
-    public void checkRequiredFields() {
-        payGrades.clickJobMenu();
-        payGrades.clickPayGradesMenu();
-
-        payGrades.clickAdd();
-        payGrades.clickSave();
-
-        Assert.assertTrue(new JobTitlesPage(getDriver()).isRequired(),
-                "Required message is not displayed");
-    }
-
-    @Test(priority = 2, description = "TC-20 Max smaller than Min salary ")
-    public void verifyInvalidSalaryWarning() {
-       
-        payGrades.typeName("final1234");
-        payGrades.clickSave();
-
-        payGrades.clickAddCurrency();
-        payGrades.selectCurrency(2);
-        payGrades.typeMinimumSalary("6000");
-        payGrades.typeMaximumSalary("3000");
-        payGrades.clickCurrencySave();
-
-        Assert.assertTrue(payGrades.isWarningDisplayed("Should be higher than Minimum Salary"),
-                "warning not displayed");
-    }
-
-    @Test(priority = 3, description = "TC-21 Negative salary values")
-    public void verifyNegativeSalaryWarning() {
-       
-        payGrades.typeMinimumSalary("-12");
-        payGrades.typeMaximumSalary("-1");
-        payGrades.clickCurrencySave();
-
-        Assert.assertTrue(payGrades.isWarningDisplayed("Should be a valid number (xxx.xx)"),
-                "Expected warning not displayed for negative salary values");
-    }
-
-    @Test(priority = 4, description = "TC-22 Delete single currency")
-    public void deleteOneCurrency() {
-    	payGrades.refreshPage();
-    	 payGrades.clickAddCurrency();
-         payGrades.selectCurrency(2);
-         payGrades.typeMinimumSalary("2000");
-         payGrades.typeMaximumSalary("3000");
-         payGrades.clickCurrencySave();
-        payGrades.deleteByIndex(1);
-
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Delete currency did not work");
-    }
-
-    @Test(priority = 5, description = "TC-23 Delete all currencies")
-    public void deleteAllCurrencies() {
-    	 payGrades.clickAddCurrency();
-         payGrades.selectCurrency(2);
-         payGrades.typeMinimumSalary("2000");
-         payGrades.typeMaximumSalary("3000");
-         payGrades.clickCurrencySave();
-
-        payGrades.deleteAll();
-
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Delete All Currencies did not work");
-    }
-    @Test(priority = 6, description = "TC-09 Edit Pay Grade name")
-    public void editPayGradeName() throws InterruptedException {
-        payGrades.clickJobMenu();
-        payGrades.clickPayGradesMenu();
-
-        payGrades.editPayGradeName(1, "er6er5er");
+        login = new LogIn(getDriver());
         
+        payGrades = new PayGradesPage(getDriver());
 
-        Thread.sleep(2000);
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Success toast did not appear");
+        login.Login(
+            ConfigReader.getProperty("username"),
+            ConfigReader.getProperty("password")
+        );
+
+        Assert.assertTrue(login.isLogedIn(), "AdminLogin Failed");
+
+        payGrades.clickPayGradesMenu();
     }
-   
-    @Test(priority = 8, description = "TC-24 Delete entire pay grade")
-    public void deleteOnePayGrade() {
-        payGrades.clickJobMenu();
+
+
+    @Test(	
+
+    		description = "TC-18+19 Add valid pay grade + Add currency to pay grade")
+	    public void addPayGrade() {
+	       
+    			
+	        payGrades.addPayGrade(gradeNamee, indx, minSalaryy, maxSalaryy);
+	
+	        Assert.assertTrue(payGrades.waitForSuccessToast(),
+	                "Pay Grade not saved");
+	    }
+    
+    @Test(
+    	    	
+    	    description = "TC-02 Verify required field validation on Add Pay Grade"
+    		)
+    		public void checkRequiredFields() {
+
+    	    payGrades.clickAddPayGradeBtn(); // Click Add on Pay Grades page
+
+    	    payGrades.clickSave(); // Click Save without entering Name
+
+    	    Assert.assertTrue(
+    	        payGrades.isRequired(),
+    	        "Required message is not displayed"
+    	    );
+    	}
+
+    @Test(
+            
+            description = "TC-20 Maximum salary smaller than minimum salary"
+        )
+        public void verifyInvalidSalaryWarning() {
+
+            String uniqueGrade = "InvalidSalary_" + System.currentTimeMillis();
+
+            payGrades.clickAddPayGradeBtn();
+
+            payGrades.typeName(uniqueGrade);
+            payGrades.clickSave();
+
+            payGrades.clickAddCurrency();
+
+            payGrades.selectCurrency(2);
+            payGrades.typeMinimumSalary("6000");
+            payGrades.typeMaximumSalary("3000");
+
+            payGrades.clickCurrencySave();
+
+            Assert.assertTrue(
+                    payGrades.isWarningDisplayed(
+                            "Should be higher than Minimum Salary"
+                    ),
+                    "Invalid salary warning was not displayed"
+            );
+        }
+
+    // Negative salary input   
+    @Test(
+            
+            description = "TC-21 Negative salary values"
+        )
+        public void verifyNegativeSalaryWarning() {
+
+            String uniqueGrade = "NegativeSalary_" + System.currentTimeMillis();
+
+            payGrades.clickAddPayGradeBtn();
+
+            payGrades.typeName(uniqueGrade);
+            payGrades.clickSave();
+
+            payGrades.clickAddCurrency();
+
+            payGrades.selectCurrency(2);
+            payGrades.typeMinimumSalary("-12");
+            payGrades.typeMaximumSalary("-1");
+
+            payGrades.clickCurrencySave();
+
+            Assert.assertTrue(
+                    payGrades.isWarningDisplayed(
+                            "Should be a valid number (xxx.xx)"
+                    ),
+                    "Expected warning was not displayed for negative salary values"
+            );
+        }
+
+    // Delete only one currency   
+    @Test(
+            
+            description = "TC-22 Delete single currency"
+        )
+        public void deleteOneCurrency() {
+
+            String uniqueGrade = "DeleteCurrency_" + System.currentTimeMillis();
+
+            payGrades.clickAddPayGradeBtn();
+
+            payGrades.typeName(uniqueGrade);
+            payGrades.clickSave();
+
+            payGrades.clickAddCurrency();
+
+            payGrades.selectCurrency(2);
+            payGrades.typeMinimumSalary("2000");
+            payGrades.typeMaximumSalary("3000");
+            payGrades.clickCurrencySave();
+
+            payGrades.deleteByIndex(1);
+
+            Assert.assertTrue(
+                    payGrades.waitForSuccessToast(),
+                    "Delete currency did not work"
+            );
+        }
+    
+    // Delete all currencies
+    @Test(
+          
+            description = "TC-23 Delete all currencies"
+        )
+        public void deleteAllCurrencies() {
+
+            String uniqueGrade = "DeleteCurrencies_" + System.currentTimeMillis();
+
+            payGrades.clickAddPayGradeBtn();
+
+            payGrades.typeName(uniqueGrade);
+            payGrades.clickSave();
+
+            payGrades.clickAddCurrency();
+
+            payGrades.selectCurrency(2);
+            payGrades.typeMinimumSalary("2000");
+            payGrades.typeMaximumSalary("3000");
+            payGrades.clickCurrencySave();
+
+            payGrades.deleteAll();
+
+            Assert.assertTrue(
+                    payGrades.waitForSuccessToast(),
+                    "Delete All Currencies did not work"
+            );
+        }
+    
+    // Edit payGradeName    
+    @Test(description = "TC-09 Edit Pay Grade name")
+    public void editPayGradeName() {
+
+        String uniqueGrade = "EditGrade_" + System.currentTimeMillis();
+
+        String editedGrade = "EditedGrade_" + System.currentTimeMillis();
+
+        // Open Pay Grades page
         payGrades.clickPayGradesMenu();
 
-        payGrades.deleteByIndex(1);
+        // Create Pay Grade
+        payGrades.clickAddPayGradeBtn();
+        payGrades.typeName(uniqueGrade);
+        payGrades.savePayGrade();
 
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Delete  Pay Grade did not work");
-    }
+        // Navigate back to Pay Grades list
+        payGrades.goToPayGradesList();
 
-    @Test(priority = 9, description = "TC-25 Delete all grades")
-    public void deleteAllPayGrades() {
-       
+        // Verify created Pay Grade
+        Assert.assertTrue(
+                payGrades.isPayGradePresent(uniqueGrade),
+                "Pay Grade creation failed: " + uniqueGrade
+        );
 
-        payGrades.deleteAll();
+        // Edit Pay Grade
+        payGrades.editPayGradeName(uniqueGrade, editedGrade);
 
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Delete All Pay Grades did not work");
+        // Navigate back to Pay Grades list
+        payGrades.goToPayGradesList();
+
+        // Verify edited Pay Grade
+        Assert.assertTrue(
+                payGrades.isPayGradePresent(editedGrade),
+                "Pay Grade editing failed: " + editedGrade
+        );
     }
     
-    @Test(priority = 7, description = "TC-27 Edit Currency Min/Max values")
-    public void editCurrencyDetails() throws InterruptedException {
-       
-        payGrades.editCurrencyDetails(1, "3500", "6500");
-        Thread.sleep(2000);
-
-
-        Assert.assertTrue(payGrades.waitForSuccessToast(),
-                "Success toast did not appear");
-    }
-
     
+    // Edit currencyDetails   
+    @Test(
+          
+            description = "TC-27 Edit Currency Min/Max values"
+        )
+        public void editCurrencyDetails() {
 
+            String uniqueGrade = "EditCurrency_" + System.currentTimeMillis();
 
+            payGrades.clickAddPayGradeBtn();
 
+            payGrades.typeName(uniqueGrade);
+            payGrades.clickSave();
+
+            payGrades.clickAddCurrency();
+
+            payGrades.selectCurrency(2);
+            payGrades.typeMinimumSalary("2000");
+            payGrades.typeMaximumSalary("3000");
+            payGrades.clickCurrencySave();
+
+            payGrades.editCurrencyDetails(
+                    1,
+                    "3500",
+                    "6500"
+            );
+
+            Assert.assertTrue(
+                    payGrades.waitForSuccessToast(),
+                    "Success toast did not appear after editing currency"
+            );
+        }
+    
+    
+    // Delete only one payGrade   
+    @Test(
+    			
+    			description = "TC-24 Delete single Pay Grade"
+    	)
+    	public void deleteOnePayGrade() {
+
+    	    String uniqueGrade = "DeleteGrade_" + System.currentTimeMillis();
+
+    	    payGrades.clickAddPayGradeBtn();;
+    	    payGrades.typeName(uniqueGrade);
+    	    payGrades.clickSave();
+
+    	    Assert.assertTrue(
+    	        payGrades.waitForSuccessToast(),
+    	        "Pay Grade creation failed"
+    	    );
+
+    	    payGrades.deletePayGrade(uniqueGrade);
+
+    	    Assert.assertTrue(
+    	        payGrades.waitForSuccessToast(),
+    	        "Delete Pay Grade did not work"
+    	    );
+    	}
+
+    // Delete all payGrades    
+    @Test(
+            
+            description = "TC-25 Delete all Pay Grades"
+        )
+        public void deleteAllPayGrades() {
+
+            payGrades.deleteAll();
+
+            Assert.assertTrue(
+                    payGrades.waitForSuccessToast(),
+                    "Delete All Pay Grades did not work"
+            );
+        }
+    
+    
 
 }

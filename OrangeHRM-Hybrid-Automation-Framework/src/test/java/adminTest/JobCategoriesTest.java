@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import adminModule.JobCategoriesPage;
 import baseTest.TestBase;
 import loginModule.LogIn;
+import utilities.ConfigReader;
 
 public class JobCategoriesTest extends TestBase {
 
@@ -14,84 +15,92 @@ public class JobCategoriesTest extends TestBase {
     private JobCategoriesPage jobCategoriesPage;
 
     @BeforeMethod
-    public void initialize() {
+	    public void initialize() {
+	
+	        jobCategoriesPage = new JobCategoriesPage(getDriver());
+	        loginAsAdmin();
+	        jobCategoriesPage.goToJobCategories();
+	    }
 
-        login = new LogIn(getDriver());
+    @Test(
+    		priority = 1, 
+    		description = "TC-07 Verify that a Job category can be added successfully with valid input")
+	    public void testAddJobCategoryValidInput() {
+	
+	        jobCategoriesPage.addJobCategory("Skillful");
+	
+	        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
+	
+	    }
 
-        jobCategoriesPage = new JobCategoriesPage(getDriver());
+    @Test(
+    		priority = 2, 
+    		description = "TC-08 Verify system behavior when trying to add a Job Category without entering any data")
+	    public void testJobCategoryFieldCannotBeBlank() {
+	
+	        jobCategoriesPage.addJobCategory("");
+	
+	        Assert.assertTrue(jobCategoriesPage.isRequiredErrorDisplayed());
+	
+	    }
 
-        login.Login("Admin", "admin123");
+    @Test(
+    		priority = 3, 
+    		description = "TC-09 Verify the system does not allow adding duplicate job categories")
+	    public void testDuplicateJobCategoryNotAllowed() {
+	
+	        jobCategoriesPage.addJobCategory("Professionals");
+	
+	        Assert.assertTrue(jobCategoriesPage.isAlreadyExistsErrorDisplayed());
+	
+	    }
 
-        Assert.assertTrue(login.isLogedIn(), "Admin login failed");
+    @Test(
+    		priority = 4, 
+    		description = "TC-10 Verify an admin can edit an existing job category")
+	    public void testEditJobCategory() {
+	
+	        jobCategoriesPage.editJobCategory("Professionals", "Professionals 2");
+	
+	        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
+	
+	    }
 
-        jobCategoriesPage.goToJobCategories();
-    }
+    @Test(
+    		priority = 5, 
+    		description = "TC-11 Verify a job category can be deleted individually")
+	    public void testDeleteSingleJobCategory() {
+	
+	        jobCategoriesPage.deleteJobCategory("Sales Workers");
+	
+	        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
+	
+	    }
 
-    @Test(priority = 1, description = "TC-07 Verify that a Job category can be added successfully with valid input")
-    public void testAddJobCategoryValidInput() {
+    @Test(
+    		priority = 6, 
+    		description = "TC-12 Verify multiple job categories can be deleted simultaneously")
+	    public void testDeleteMultipleJobCategories() {
+	
+	        jobCategoriesPage.selectJobCategoryCheckbox("Operatives");
+	
+	        jobCategoriesPage.selectJobCategoryCheckbox("Craft Workers");
+	
+	        jobCategoriesPage.deleteSelectedCategories();
+	
+	        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
+	
+	    }
 
-        jobCategoriesPage.addJobCategory("Skillful");
-
-        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
-
-    }
-
-    @Test(priority = 2, description = "TC-08 Verify system behavior when trying to add a Job Category without entering any data")
-    public void testJobCategoryFieldCannotBeBlank() {
-
-        jobCategoriesPage.addJobCategory("");
-
-        Assert.assertTrue(jobCategoriesPage.isRequiredErrorDisplayed());
-
-    }
-
-    @Test(priority = 3, description = "TC-09 Verify the system does not allow adding duplicate job categories")
-    public void testDuplicateJobCategoryNotAllowed() {
-
-        jobCategoriesPage.addJobCategory("Professionals");
-
-        Assert.assertTrue(jobCategoriesPage.isAlreadyExistsErrorDisplayed());
-
-    }
-
-    @Test(priority = 4, description = "TC-10 Verify an admin can edit an existing job category")
-    public void testEditJobCategory() {
-
-        jobCategoriesPage.editJobCategory("Professionals", "Professionals 2");
-
-        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
-
-    }
-
-    @Test(priority = 5, description = "TC-11 Verify a job category can be deleted individually")
-    public void testDeleteSingleJobCategory() {
-
-        jobCategoriesPage.deleteJobCategory("Sales Workers");
-
-        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
-
-    }
-
-    @Test(priority = 6, description = "TC-12 Verify multiple job categories can be deleted simultaneously")
-    public void testDeleteMultipleJobCategories() {
-
-        jobCategoriesPage.selectJobCategoryCheckbox("Operatives");
-
-        jobCategoriesPage.selectJobCategoryCheckbox("Craft Workers");
-
-        jobCategoriesPage.deleteSelectedCategories();
-
-        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
-
-    }
-
-    @Test(priority = 7, description = "TC-13 Verify if special characters are allowed or restricted in job category name")
-    public void testSpecialCharactersInJobCategory() {
-
-        jobCategoriesPage.addJobCategory("Skillful@2025");
-
-        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
-
-    }
+    @Test(
+    		priority = 7, 
+    		description = "TC-13 Verify if special characters are allowed or restricted in job category name")
+	    public void testSpecialCharactersInJobCategory() {
+	
+	        jobCategoriesPage.addJobCategory("Skillful@2025");
+	
+	        Assert.assertTrue(jobCategoriesPage.isSuccessMessageDisplayed());
+	
+	    }
 
 }

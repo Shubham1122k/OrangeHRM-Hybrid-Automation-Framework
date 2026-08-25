@@ -1,39 +1,57 @@
 package organizationTest;
 
 import org.testng.Assert;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import baseTest.TestBase;
+import loginModule.LogIn;
 import organizationModule.OrganizationLocations;
 
 public class OrganizationLocationAddTest extends TestBase {
+	private LogIn login;
 	private OrganizationLocations Location;
 
-	@BeforeClass
+	@BeforeMethod(alwaysRun = true)
 	public void setUpPage() {
-		Location = new OrganizationLocations(getDriver());
+		
+	    Location = new OrganizationLocations(getDriver());
+	    loginAsAdmin();
 	}
 
 
-	@Test(priority = 2, description = "Verify Add valid Location")
-	public void ValidAddTest() {
-		Location.OpenLocationForm();
-		Location.AddName("OntarioOttawa");
-		Location.addCountry("Canada");
-		Location.SaveAdd();
-		Assert.assertTrue(Location.getSuccessMessage().contains("Successfully Saved"));
+	@Test
+	public void validAddTest() {
+	    String locationName = "OntarioOttawa_" + System.currentTimeMillis();
 
+	    Location.OpenLocationForm();
+	    Location.AddName(locationName);
+	    Location.addCountry("Canada");
+	    Location.SaveAdd();
+
+	    Assert.assertTrue(
+	        Location.getSuccessMessage().contains("Successfully Saved")
+	    );
 	}
 
-	@Test(priority = 3, description = "Verify Add duplicate Location")
-	public void DuplicateAddTest() {
-		Location.OpenLocationForm();
-		Location.AddName("OntarioOttawa");
-		Location.addCountry("Canada");
-		Location.SaveAdd();
-		Assert.assertTrue(Location.isExistDisplayed());
+	@Test
+	public void duplicateAddTest() {
+		
+		 String locationName = "OntarioOttawa_" + System.currentTimeMillis();
 
+	    // First create OntarioOttawa
+	    Location.OpenLocationForm();
+	    Location.AddName("OntarioOttawa");
+	    Location.addCountry("Canada");
+	    Location.SaveAdd();
+
+	    // Then attempt to create the same location
+	    Location.OpenLocationForm();
+	    Location.AddName("OntarioOttawa");
+	    Location.addCountry("Canada");
+	    Location.SaveAdd();
+
+	    Assert.assertTrue(Location.isExistDisplayed());
 	}
 
 	@Test(priority = 1, description = "Verify Add invalid Location blank required fields")

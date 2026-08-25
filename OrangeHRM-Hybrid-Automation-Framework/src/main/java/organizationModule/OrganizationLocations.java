@@ -15,7 +15,7 @@ public class OrganizationLocations extends BasePage {
 	
 
 	private By adminElement = By
-			.xpath("//a//span[text()=\"Admin\"]");
+			.xpath("//span[text()='Admin']");
 
 	private By organizationButton = By
 			.xpath("//li[contains(@class,'oxd-topbar-body-nav-tab')][.//span[normalize-space()='Organization']]");

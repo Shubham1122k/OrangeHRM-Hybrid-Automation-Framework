@@ -26,15 +26,11 @@ public class BasePage  {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
-    // Wait for click
-    protected WebElement waitForClick(By locator) {
+    // Wait for clickability
+    protected WebElement waitForClickability(By locator) {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-    // Click action
-    protected void click(By locator) {
-        waitForClick(locator).click();
-    }
 
     // Type action
     protected void type(By locator, String text) {
@@ -48,7 +44,7 @@ public class BasePage  {
         return waitForVisibility(locator).getText();
     }
 
-    // Check display
+    // Check display or not
     protected boolean isDisplayed(By locator) {
         try {
             return waitForVisibility(locator).isDisplayed();
@@ -65,10 +61,30 @@ public class BasePage  {
     
     //replaceText
     protected void replaceText(By locator, String value) {
-        WebElement element = waitForClick(locator);
+        WebElement element = waitForClickability(locator);
         element.sendKeys(Keys.CONTROL + "a");
         element.sendKeys(Keys.DELETE);
         element.sendKeys(value);
+    }
+    
+    // Loader disappear   
+    private final By FORM_LOADER = By.cssSelector(".oxd-form-loader");
+    public void waitForLoaderToDisappear() {
+
+        wait.until(
+            ExpectedConditions.invisibilityOfElementLocated(
+                By.cssSelector(".oxd-form-loader")
+            )
+        );
+    }
+    
+    //click action    
+    public void click(By locator) {
+        waitForLoaderToDisappear();
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+
+        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
     }
     
     

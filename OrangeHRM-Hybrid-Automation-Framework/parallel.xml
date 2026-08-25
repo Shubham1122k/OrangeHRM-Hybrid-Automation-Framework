@@ -2,20 +2,19 @@
 
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
-<suite name="Parallel Suite"
+<suite name="OrangeHRM Parallel Suite"
        parallel="classes"
        thread-count="4">
 
-    <test name="All Tests">
+    <test name="OrangeHRM ParallelClasses">
 
         <packages>
-            <package name="Job_Module"/>
-            <package name="Organization_Module"/>
-            <package name="PIM_Module"/>
-            <package name="QABootcamp_Maven.SauceDemo"/>
-            <package name="User_Management_Module"/>
+            <package name="loginTest"/>
+            <package name="adminTest"/>
+            <package name="oraganizationTest"/>
+            <package name="pimTest"/>
+            <package name="userManagementTest"/>
         </packages>
 
     </test>
-
 </suite>

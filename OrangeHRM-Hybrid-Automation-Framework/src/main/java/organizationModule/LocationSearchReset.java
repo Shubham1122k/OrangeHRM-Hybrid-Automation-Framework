@@ -15,7 +15,7 @@ public class LocationSearchReset extends BasePage  {
 	
 
 	private By AdminElement = By
-			.xpath("//a//span[text()=\"Admin\"]");
+			.xpath("//span[text()='Admin']");
 
 	private By OrganizationButton = By.xpath("//li[contains(@class,'oxd-topbar-body-nav-tab')][.//span[normalize-space()='Organization']]");
 	private By LocationButton = By.xpath("//a[normalize-space()='Locations']");

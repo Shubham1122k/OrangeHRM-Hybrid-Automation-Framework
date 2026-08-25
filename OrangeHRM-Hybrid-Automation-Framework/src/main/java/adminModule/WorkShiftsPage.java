@@ -13,28 +13,38 @@ import base.BasePage;
 
 public class WorkShiftsPage extends BasePage {
 	
-
     public WorkShiftsPage(WebDriver driver) {
     		super(driver);
     }
 
-    // Buttons
-    private By addButton= By.xpath("//button[normalize-space()='Add']");
-    private By saveButton= By.xpath("//button[normalize-space()='Save']");
-    private By deleteSelectedBtn= By.xpath("//button[normalize-space()='Delete Selected']");
-    private By confirmDeleteBtn= By.xpath("//button[normalize-space()='Yes, Delete']");
-    private By cancelButton= By.xpath("//button[normalize-space()='Cancel']");
-    private By editButton= By.xpath("(//button[contains(@class,'oxd-icon-button')])[4]");
-    // field locators
-    private By shiftName= By.xpath("//label[normalize-space()='Shift Name']/following::input[1]");
-    private By fromHours= By.xpath("//label[normalize-space()='From']/following::input[1]");
-    private By toHours= By.xpath("//label[normalize-space()='To']/following::input[1]");
-    private By tableBody= By.cssSelector(".oxd-table-body");
-    private By successToast= By.xpath("//p[contains(.,'Successfully Saved') or contains(.,'Successfully Deleted') or contains(.,'Successfully Updated')]"
-    		);
-    private By errorToast= By.xpath("//p[contains(.,'Required') or contains(.,'Already exists') or contains(.,'Should be')]");
+    // Navigate
+    private final By adminMenu = By.xpath("//span[text()='Admin']");
+    private final By jobMenu = By.xpath("//li[normalize-space()='Job'] | //span[normalize-space()='Job']");
+    private final By workMenu = By.xpath("//a[text()='Work Shifts' and @class='oxd-topbar-body-nav-tab-link']");
+    
+    //Locators and Buttons    
+    private final By addButton= By.xpath("//button[normalize-space()='Add']");
+    private final By saveButton= By.xpath("//button[normalize-space()='Save']");
+    private final By deleteSelectedBtn= By.xpath("//button[normalize-space()='Delete Selected']");
+    private final By confirmDeleteBtn= By.xpath("//button[normalize-space()='Yes, Delete']");
+    private final By cancelButton= By.xpath("//button[normalize-space()='Cancel']");
+    private final By editButton= By.xpath("(//button[contains(@class,'oxd-icon-button')])[4]");
+    
+    private final By shiftName= By.xpath("//label[normalize-space()='Shift Name']/following::input[1]");
+    private final By fromHours= By.xpath("//label[normalize-space()='From']/following::input[1]");
+    private final By toHours= By.xpath("//label[normalize-space()='To']/following::input[1]");
+    private final By tableBody= By.cssSelector(".oxd-table-body");
+    private final By successToast= 
+    		By.xpath("//p[contains(.,'Successfully Saved') or contains(.,'Successfully Deleted') or contains(.,'Successfully Updated')]");
+    private final By errorToast= By.xpath("//p[contains(.,'Required') or contains(.,'Already exists') or contains(.,'Should be')]");
 
-    // Actions
+    //Navigate to  Work Shift menu     
+    public void clickWorkShiftsMenu() {
+    	click(adminMenu);
+    	click(jobMenu);
+    	click(workMenu);
+    	click(tableBody);
+    }
     
     private By deleteButton(String name) {
         return By.xpath("//div[text()='" + name +
@@ -48,11 +58,6 @@ public class WorkShiftsPage extends BasePage {
 
     private By row(String name) {
         return By.xpath("//div[@class='oxd-table-card']//div[text()='" + name + "']");
-    }
-
-    public void openWorkShiftsDirect() {
-        driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/admin/workShift");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(tableBody));
     }
 
     public void clickAddButton() {
@@ -121,19 +126,19 @@ public class WorkShiftsPage extends BasePage {
 
     public void deleteWorkShift(String name) {
         
-        wait.until(ExpectedConditions.elementToBeClickable(deleteButton(name))).click();
-        wait.until(ExpectedConditions.elementToBeClickable(confirmDeleteBtn)).click();
+    	click(deleteButton(name));
+    	click(confirmDeleteBtn);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(confirmDeleteBtn));
     }
 
     public void selectWorkShiftCheckbox(String name) {
         
-        wait.until(ExpectedConditions.elementToBeClickable(checkbox(name))).click();
+    	click(checkbox(name));
     }
 
     public void deleteSelected() {
-        wait.until(ExpectedConditions.elementToBeClickable(deleteSelectedBtn)).click();
-        wait.until(ExpectedConditions.elementToBeClickable(confirmDeleteBtn)).click();
+    	click(deleteSelectedBtn);
+    	click(confirmDeleteBtn);
         wait.until(ExpectedConditions.invisibilityOfElementLocated(confirmDeleteBtn));
     }
     
@@ -145,27 +150,25 @@ public class WorkShiftsPage extends BasePage {
                 wait.until(ExpectedConditions.invisibilityOfElementLocated(cancelButton));
             }
         } catch (Exception e) {
+        	
         }
-        }
+    }
 
     // Assertions 
 
     public boolean isRowVisible(String shift) {
         try {
             By row = By.xpath("//div[@class='oxd-table-card']//div[text()='" + shift + "']");
-            wait.until(ExpectedConditions.visibilityOfElementLocated(row));
+            waitForVisibility(row);
             return true;
         } catch (TimeoutException e) {
             return false;
         }
     }
     
-  
-
-
     public boolean isSuccessToastVisible() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(successToast));
+        	waitForVisibility(successToast);
             return true;
         } catch (TimeoutException e) {
             return false;
@@ -174,17 +177,12 @@ public class WorkShiftsPage extends BasePage {
 
     public boolean isErrorToastVisible() {
         try {
-            wait.until(ExpectedConditions.visibilityOfElementLocated(errorToast));
+        	waitForVisibility(errorToast);
             return true;
         } catch (TimeoutException e) {
             return false;
-        }
-        
-        
-        
+        }    
     }
-    
-    
 }
 
 	

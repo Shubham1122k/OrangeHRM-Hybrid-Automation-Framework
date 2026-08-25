@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeMethod;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import loginModule.LogIn;
+import utilities.ConfigReader;
 
 public class TestBase {
 
@@ -20,9 +21,16 @@ public class TestBase {
     @BeforeMethod(alwaysRun = true)
     public void setup() {
 
-        WebDriverManager.chromedriver().setup();
+    	String browser = ConfigReader.getProperty("browser");
 
-        driver.set(new ChromeDriver());
+        if (browser.equalsIgnoreCase("chrome")) {
+
+            WebDriverManager.chromedriver().setup();
+            driver.set(new ChromeDriver());
+
+        } else {
+            throw new IllegalArgumentException("Unsupported browser: " + browser);
+        }
 
         getDriver().manage().window().maximize();
 
@@ -34,7 +42,10 @@ public class TestBase {
 
         LogIn login = new LogIn(getDriver());
 
-        login.Login("Admin", "admin123");
+        login.Login(
+        		ConfigReader.getProperty("username"), 
+        		ConfigReader.getProperty("password")
+        );
 
         Assert.assertTrue(login.isLogedIn(), "Login Failed");
     }
@@ -42,8 +53,10 @@ public class TestBase {
     @AfterMethod(alwaysRun = true)
     public void tearDown() {
 
-        if (getDriver() != null) {
-            getDriver().quit();
+        WebDriver webDriver = driver.get();
+
+        if (webDriver != null) {
+            webDriver.quit();
             driver.remove();
         }
     }

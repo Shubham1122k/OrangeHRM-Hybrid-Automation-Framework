@@ -15,7 +15,7 @@ import base.BasePage;
 public class OrganizationLocationsEdit extends BasePage {
 	
 
-	private By adminElement = By.xpath("//a//span[text()=\"Admin\"]");
+	private By adminElement = By.xpath("//span[text()='Admin']");
 	private By organizationButton = By
 			.xpath("//li[contains(@class,'oxd-topbar-body-nav-tab')][.//span[normalize-space()='Organization']]");
 	private By locationButton = By.xpath("//a[text()='Locations']");
