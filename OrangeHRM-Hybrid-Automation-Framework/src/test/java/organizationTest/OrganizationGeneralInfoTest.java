@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import baseTest.TestBase;
 import loginModule.LogIn;
 import organizationModule.OrganizationGeneralInfo;
+import utilities.ConfigReader;
 
 public class OrganizationGeneralInfoTest extends TestBase {
 	
@@ -14,58 +15,85 @@ public class OrganizationGeneralInfoTest extends TestBase {
 	private OrganizationGeneralInfo organization;
 
 	@BeforeMethod(alwaysRun = true)
-	public void setUpPage() {
-		
-	    organization = new OrganizationGeneralInfo(getDriver());
-	    loginAsAdmin();
-	    
-	    
-	}
+    public void initialize() {
+
+        login = new LogIn(getDriver());
+        organization = new OrganizationGeneralInfo(getDriver());
+
+        login.Login(
+            ConfigReader.getProperty("username"),
+            ConfigReader.getProperty("password")
+        );
+
+        Assert.assertTrue(
+            login.isLogedIn(),
+            "Admin Login Failed"
+        );
+
+        organization.openGeneralInformationForm();
+    }
 
 	@Test(description = "Verify edit organizationName")
 	public void OrganizationNameTest() {
-		organization.openGeneralInformationForm();
-		organization.editOrganizatioName("AXSOS2");
-		organization.saveEdit();
-		Assert.assertTrue(organization.getSuccessMessage().contains("Successfully Updated"));
 
-	}
-	@Test(description = "Verify invalid phone Number")
-	public void InvalidPhoneNumberTest() {
+	    organization.enterEditMode();
 
-	    organization.openGeneralInformationForm();
+	    String originalName = organization.getOrganizationName();
 
-	    organization.editPhone("phone");
-
+	    organization.editOrganizatioName("AXSOS2");
 	    organization.saveEdit();
 
 	    Assert.assertTrue(
-	        organization.isinvalidPhoneFormat()
+	        organization.getSuccessMessage().contains("Successfully Updated")
+	    );
+
+	    // Save returns page to view mode
+	    organization.enterEditMode();
+
+	    organization.editOrganizatioName(originalName);
+	    organization.saveEdit();
+	}
+	
+	@Test(description = "Verify invalid phone Number")
+	public void InvalidPhoneNumberTest() {
+
+	    organization.enterEditMode();
+
+	    organization.editPhone("phone");
+	    organization.saveEdit();
+
+	    Assert.assertTrue(
+	        organization.isinvalidPhoneFormat(),
+	        "Invalid phone number message not displayed"
 	    );
 	}
 	
 	@Test(description = "Verify invalidEmail")
-	public void InvalidEmailTest() throws InterruptedException {
+	public void InvalidEmailTest() {
 
-		organization.openGeneralInformationForm();
+	    organization.enterEditMode();
 
-		organization.editEmail("abc");
+	    organization.editEmail("abc");
+	    organization.saveEdit();
 
-		organization.saveEdit();
-
-		Assert.assertTrue(
-		        organization.isinvalidFormatDisplayed(),
-		        "Invalid email error message was not displayed"
-		);
+	    Assert.assertTrue(
+	        organization.isinvalidFormatDisplayed(),
+	        "Invalid email error message was not displayed"
+	    );
 	}
 	
 	@Test(description = "Verify admin can edit general information by leave required field empty")
 	public void InvalidBlankEditTest() {
-		organization.openGeneralInformationForm();
-		organization.editOrganizatioName("");
-		organization.saveEdit();
-		Assert.assertTrue(organization.isErrorMessageDisplayed());
 
+	    organization.enterEditMode();
+
+	    organization.editOrganizatioName("");
+	    organization.saveEdit();
+
+	    Assert.assertTrue(
+	        organization.isErrorMessageDisplayed(),
+	        "Required field message was not displayed"
+	    );
 	}
 	
 

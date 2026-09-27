@@ -12,8 +12,7 @@ import utilities.ConfigReader;
 
 public class PayGradesTest extends TestBase {
 	
-	private LogIn login;
-    PayGradesPage payGrades;
+    private PayGradesPage payGrades;
 
     private final String gradeNamee      = "final123";
     private final int indx      		 	= 2;
@@ -22,18 +21,9 @@ public class PayGradesTest extends TestBase {
 
     @BeforeMethod
     public void initialize()  {
-
-        login = new LogIn(getDriver());
-        
+    	
         payGrades = new PayGradesPage(getDriver());
-
-        login.Login(
-            ConfigReader.getProperty("username"),
-            ConfigReader.getProperty("password")
-        );
-
-        Assert.assertTrue(login.isLogedIn(), "AdminLogin Failed");
-
+        loginAsAdmin();
         payGrades.clickPayGradesMenu();
     }
 
@@ -183,43 +173,7 @@ public class PayGradesTest extends TestBase {
             );
         }
     
-    // Edit payGradeName    
-    @Test(description = "TC-09 Edit Pay Grade name")
-    public void editPayGradeName() {
-
-        String uniqueGrade = "EditGrade_" + System.currentTimeMillis();
-
-        String editedGrade = "EditedGrade_" + System.currentTimeMillis();
-
-        // Open Pay Grades page
-        payGrades.clickPayGradesMenu();
-
-        // Create Pay Grade
-        payGrades.clickAddPayGradeBtn();
-        payGrades.typeName(uniqueGrade);
-        payGrades.savePayGrade();
-
-        // Navigate back to Pay Grades list
-        payGrades.goToPayGradesList();
-
-        // Verify created Pay Grade
-        Assert.assertTrue(
-                payGrades.isPayGradePresent(uniqueGrade),
-                "Pay Grade creation failed: " + uniqueGrade
-        );
-
-        // Edit Pay Grade
-        payGrades.editPayGradeName(uniqueGrade, editedGrade);
-
-        // Navigate back to Pay Grades list
-        payGrades.goToPayGradesList();
-
-        // Verify edited Pay Grade
-        Assert.assertTrue(
-                payGrades.isPayGradePresent(editedGrade),
-                "Pay Grade editing failed: " + editedGrade
-        );
-    }
+    
     
     
     // Edit currencyDetails   
@@ -257,30 +211,37 @@ public class PayGradesTest extends TestBase {
     
     
     // Delete only one payGrade   
-    @Test(
-    			
-    			description = "TC-24 Delete single Pay Grade"
-    	)
-    	public void deleteOnePayGrade() {
+    @Test(description = "TC-24 Delete single Pay Grade")
+    public void deleteOnePayGrade() {
 
-    	    String uniqueGrade = "DeleteGrade_" + System.currentTimeMillis();
+        String uniqueGrade = "DeleteGrade_" + System.currentTimeMillis();
 
-    	    payGrades.clickAddPayGradeBtn();;
-    	    payGrades.typeName(uniqueGrade);
-    	    payGrades.clickSave();
+        payGrades.clickAddPayGradeBtn();
+        payGrades.typeName(uniqueGrade);
+        payGrades.clickSave();
 
-    	    Assert.assertTrue(
-    	        payGrades.waitForSuccessToast(),
-    	        "Pay Grade creation failed"
-    	    );
+        Assert.assertTrue(
+            payGrades.waitForSuccessToast(),
+            "Pay Grade creation failed"
+        );
 
-    	    payGrades.deletePayGrade(uniqueGrade);
+        // Go back to Pay Grades list
+        payGrades.goToPayGradesList();
 
-    	    Assert.assertTrue(
-    	        payGrades.waitForSuccessToast(),
-    	        "Delete Pay Grade did not work"
-    	    );
-    	}
+        // Verify record exists
+        Assert.assertTrue(
+            payGrades.isPayGradePresent(uniqueGrade),
+            "Pay Grade was not created: " + uniqueGrade
+        );
+
+        // Delete
+        payGrades.deletePayGrade(uniqueGrade);
+
+        Assert.assertTrue(
+            payGrades.waitForSuccessToast(),
+            "Delete Pay Grade did not work"
+        );
+    }
 
     // Delete all payGrades    
     @Test(

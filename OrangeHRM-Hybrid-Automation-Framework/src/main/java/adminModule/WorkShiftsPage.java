@@ -56,9 +56,6 @@ public class WorkShiftsPage extends BasePage {
                 "']/ancestor::div[@class='oxd-table-card']//div[contains(@class,'oxd-checkbox-wrapper')]");
     }
 
-    private By row(String name) {
-        return By.xpath("//div[@class='oxd-table-card']//div[text()='" + name + "']");
-    }
 
     public void clickAddButton() {
     		click(addButton);

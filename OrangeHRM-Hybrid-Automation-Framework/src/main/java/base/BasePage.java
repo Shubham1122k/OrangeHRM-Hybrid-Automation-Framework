@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -62,30 +63,35 @@ public class BasePage  {
     //replaceText
     protected void replaceText(By locator, String value) {
         WebElement element = waitForClickability(locator);
-        element.sendKeys(Keys.CONTROL + "a");
-        element.sendKeys(Keys.DELETE);
+        element.sendKeys(Keys.CONTROL, "a");
+        element.sendKeys(Keys.BACK_SPACE);
         element.sendKeys(value);
     }
     
     // Loader disappear   
     private final By FORM_LOADER = By.cssSelector(".oxd-form-loader");
     public void waitForLoaderToDisappear() {
-
         wait.until(
-            ExpectedConditions.invisibilityOfElementLocated(
-                By.cssSelector(".oxd-form-loader")
-            )
+            ExpectedConditions.invisibilityOfElementLocated(FORM_LOADER)
         );
     }
     
     //click action    
-    public void click(By locator) {
+    protected void click(By locator) {
         waitForLoaderToDisappear();
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-
-        wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+        waitForClickability(locator).click();
     }
     
+    //Toast waiting 
+    protected boolean waitForToast(By toastLocator) {
+
+        return wait.until(driver -> {
+            try {
+                return driver.findElement(toastLocator).isDisplayed();
+            } catch (StaleElementReferenceException e) {
+                return false;
+            }
+        });
+    }
     
 }

@@ -14,7 +14,7 @@ public class LogIn extends BasePage {
     private By userName = By.name("username");
     private By password = By.name("password");
     private By logInBtn = By.cssSelector(".oxd-button.oxd-button--main.orangehrm-login-button");
-    private By dashboard = By.xpath("//h6[text()='Dashboard']");
+    private final By dashboard = By.xpath("//h6[normalize-space()='Dashboard']");
     private By errorMessage = By.xpath("//p[text()='Invalid credentials']");
     
     //Social Links on Login Page    
@@ -39,10 +39,15 @@ public class LogIn extends BasePage {
         enterUserName(username);
         enterPass(pass);
         clickLogIn();
+        waitForVisibility(dashboard);
     }
 
     public boolean isLogedIn() {
-        return isDisplayed(dashboard);
+        try {
+            return waitForVisibility(dashboard).isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public String getMessage() {

@@ -6,6 +6,7 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -21,7 +22,7 @@ public class PayGradesPage extends BasePage {
     Actions action;
     
     public PayGradesPage(WebDriver driver) {
-    	super(driver);
+     	super(driver);
         this.action = new Actions(driver);
     }
 
@@ -33,51 +34,48 @@ public class PayGradesPage extends BasePage {
     //Locators and Buttons    
     private final By addpayGradeButton  = By.xpath("//button[normalize-space()='Add']");
     private final By addCurrencyBtn   = By.xpath("//h6[normalize-space()='Currencies']/following::button[1]");
-    private final By saveBtn          = By.xpath("//button[normalize-space()='Save']");
-    private final By successToast     = By.xpath("//div[contains(@class,'oxd-toast')]");
-
+    private final By saveBtn          = By.xpath("//button[normalize-space()='Save']"); 
+    private final By successToast = By.xpath("//div[contains(@class,'oxd-toast')]");
     private final By nameField        = By.xpath("//label[normalize-space()='Name']/following::input[1]");
-
     private final By currencyDrop     = By.xpath("//label[normalize-space()='Currency']/following::div[contains(@class,'oxd-select-text')][1]");
     private final By minSalaryInput   = By.xpath("//label[normalize-space()='Minimum Salary']/following::input[1]");
     private final By maxSalaryInput   = By.xpath("//label[normalize-space()='Maximum Salary']/following::input[1]");
     private final By secondSaveBtn    = By.xpath("(//button[normalize-space()='Save'])[2]");
-
     private final By headerCheckbox   = By.xpath("(//div[@class='oxd-checkbox-wrapper'])[1]");
     private final By deleteSelected   = By.xpath("//button[normalize-space()='Delete Selected']");
-    private final By confirmYes       = By.xpath("//button[normalize-space()='Yes, Delete']");
-    
+    private final By confirmYes       = By.xpath("//button[normalize-space()='Yes, Delete']"); 
     private final By payGradesHeading = By.xpath("//h6[normalize-space()='Pay Grades']");
     private final By FORM_LOADER		 = By.cssSelector(".oxd-form-loader");
     private By payGradesTable = By.cssSelector(".oxd-table-body");
-    By editSaveBtn = By.xpath(
-    	    "//form//button[normalize-space()='Save']"
-    	);
+    By editSaveBtn = By.xpath("//form//button[normalize-space()='Save']");
     
     
     
     //Navigate to Pay Grades menu   
     public void clickPayGradesMenu() {
-	    	click(adminMenu);
-	    	WebElement job = clickable(By.xpath("//span[normalize-space()='Job']"));
-	        action.moveToElement(job).click().perform();
-	
-	        WebElement payGrades = clickable(
-            By.xpath("//a[normalize-space()='Pay Grades']")
+
+        click(adminMenu);
+
+        WebElement job = waitForClickability(
+            By.xpath("//span[normalize-space()='Job']")
         );
-        payGrades.click();
-        
+
+        action.moveToElement(job).click().perform();
+
+        click(By.xpath("//a[normalize-space()='Pay Grades']"));
+
         wait.until(
-                ExpectedConditions.visibilityOfElementLocated(payGradesHeading)
-            );
-    
+            ExpectedConditions.visibilityOfElementLocated(payGradesHeading)
+        );
     }
     
     //click btn particular for this page     
-    private WebElement clickable(By by) {
-    	
-        return wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
+//    private WebElement clickable(By by) {
+//    	
+//        return wait.until(ExpectedConditions.elementToBeClickable(by));
+//    }
+    
+    
     //scroll page    
     private void scroll(WebElement el) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block:'center'});", el);
@@ -107,6 +105,7 @@ public class PayGradesPage extends BasePage {
 	public void clickAddCurrencyBtn() {
 	    click(addCurrencyBtn);
 	}
+	
 
     //click save button
     public void clickSave() {
@@ -138,6 +137,8 @@ public class PayGradesPage extends BasePage {
             ).isDisplayed();
         } catch (TimeoutException e) {
             return false;
+        } catch (StaleElementReferenceException e) {
+            return false;
         }
     }
 
@@ -164,62 +165,69 @@ public class PayGradesPage extends BasePage {
     }
 
     //  click Add Currency 
+   
     public void clickAddCurrency() {
-        WebElement el = clickable(addCurrencyBtn);
-        scroll(el);
-        el.click();
-    }
+	    scrollIntoView(addCurrencyBtn);
+	    click(addCurrencyBtn);
+	}
     
     //  Currency select btn
     public void selectCurrency(int index) {
-        WebElement dd = clickable(currencyDrop);
-        scroll(dd);
-        dd.click();
+
+        scrollIntoView(currencyDrop);
+        click(currencyDrop);
 
         By optionBy = By.xpath("//div[@role='listbox']//div[@role='option'][" + index + "]");
-        WebElement option = wait.until(ExpectedConditions.elementToBeClickable(optionBy));
-        option.click();
+
+        click(optionBy);
     }
 
     //  Min salary    	
     public void typeMinimumSalary(String min) {
-        WebElement f = clickable(minSalaryInput);
-        scroll(f);
+        scrollIntoView(minSalaryInput);
+
+        WebElement f = waitForClickability(minSalaryInput);
         f.clear();
         f.sendKeys(min);
     }
     
     //  Max salary
     public void typeMaximumSalary(String max) {
-        WebElement f = clickable(maxSalaryInput);
-        scroll(f);
+        scrollIntoView(maxSalaryInput);
+
+        WebElement f = waitForClickability(maxSalaryInput);
         f.clear();
         f.sendKeys(max);
     }
 
     //  Save currency    
     public void clickCurrencySave() {
-        WebElement el = clickable(secondSaveBtn);
-        scroll(el);
-        el.click();
+        scrollIntoView(secondSaveBtn);
+        click(secondSaveBtn);
     }
 
     //  Delete Pay Grade by index
     public void deleteByIndex(int index) {
-        By rowDeleteBtn = By.xpath("(//button[i[contains(@class,'bi-trash')]])[" + index + "]");
-        WebElement btn = clickable(rowDeleteBtn);
-        scroll(btn);
-        btn.click();
-        clickable(confirmYes).click();
+
+        By rowDeleteBtn = By.xpath(
+            "(//button[i[contains(@class,'bi-trash')]])[" + index + "]"
+        );
+
+        scrollIntoView(rowDeleteBtn);
+        click(rowDeleteBtn);
+
+        click(confirmYes);
     }
     
     //  Delete all Pay Grades
     public void deleteAll() {
-        WebElement hdr = clickable(headerCheckbox);
-        scroll(hdr);
-        hdr.click();
-        clickable(deleteSelected).click();
-        clickable(confirmYes).click();
+
+        scrollIntoView(headerCheckbox);
+        click(headerCheckbox);
+
+        click(deleteSelected);
+
+        click(confirmYes);
     }
 
    
@@ -235,6 +243,7 @@ public class PayGradesPage extends BasePage {
         }
     }
     
+    
     //  Edit Pay Grade 
     public void editPayGradeName(String gradeName, String newName) {
 
@@ -245,14 +254,13 @@ public class PayGradesPage extends BasePage {
         );
 
         // Click edit button
-        WebElement btn = clickable(editBtn);
-        scroll(btn);
-        btn.click();
+        scrollIntoView(editBtn);
+        click(editBtn);
 
         waitForLoaderToDisappear();
 
         // Wait for name field
-        WebElement name = clickable(nameField);
+        WebElement name = waitForClickability(nameField);
 
         // Clear old value
         name.click();
@@ -264,8 +272,6 @@ public class PayGradesPage extends BasePage {
 
         // Enter new name
         name.sendKeys(newName);
-
-        System.out.println("Entered name: " + name.getAttribute("value"));
 
         // Verify correct value before saving
         Assert.assertEquals(
@@ -281,8 +287,6 @@ public class PayGradesPage extends BasePage {
         wait.until(
                 ExpectedConditions.visibilityOfElementLocated(successToast)
         );
-
-        System.out.println("Pay Grade update saved successfully");
 
         waitForLoaderToDisappear();
     }
@@ -301,19 +305,14 @@ public class PayGradesPage extends BasePage {
                 ExpectedConditions.visibilityOfElementLocated(gradeLocator)
             );
 
-            System.out.println("Pay Grade found: " + grade.getText());
-
             return grade.isDisplayed();
 
         } catch (TimeoutException e) {
 
-            System.out.println("Pay Grade not found: " + gradeName);
-            System.out.println("URL: " + driver.getCurrentUrl());
+           
             List<WebElement> rows = driver.findElements(
             	    By.xpath("//div[contains(@class,'oxd-table-body')]//div[contains(@class,'oxd-table-row')]")
             	);
-
-            	System.out.println("Available Pay Grades:");
 
             	for (WebElement row : rows) {
             	    System.out.println(row.getText());
@@ -327,18 +326,17 @@ public class PayGradesPage extends BasePage {
     //  Currency edit 	   
     public void editCurrencyDetails(int currencyIndex, String newMin, String newMax) {
         By editCurrencyBtn = By.xpath("(//button[i[contains(@class,'bi-pencil-fill')]])[" + currencyIndex + "]");
-        WebElement btn = clickable(editCurrencyBtn);
-        scroll(btn);
-        btn.click();
+        scrollIntoView(editCurrencyBtn);
+        click(editCurrencyBtn);
 
-        WebElement min = clickable(minSalaryInput);
+        WebElement min = waitForClickability(minSalaryInput);
         scroll(min);
         min.click();
         min.sendKeys(Keys.chord(Keys.CONTROL, "a"));
         min.sendKeys(Keys.DELETE);
         min.sendKeys(newMin);
 
-        WebElement max = clickable(maxSalaryInput);
+        WebElement max = waitForClickability(maxSalaryInput);
         scroll(max);
         max.click();
         max.sendKeys(Keys.chord(Keys.CONTROL, "a"));
@@ -367,24 +365,30 @@ public class PayGradesPage extends BasePage {
     public void deletePayGrade(String gradeName) {
 
         By deleteBtn = By.xpath(
-            "//div[contains(@class,'oxd-table-row')][.//div[normalize-space()='"
-            + gradeName +
-            "']]//button[i[contains(@class,'bi-trash')]]"
+            "//div[contains(@class,'oxd-table-row')]"
+            + "[.//div[normalize-space()='" + gradeName + "']]"
+            + "//button[.//i[contains(@class,'bi-trash')]]"
         );
 
+        scrollIntoView(deleteBtn);
         click(deleteBtn);
+
         click(confirmYes);
     }
     
     public void goToPayGradesList() {
-        
+
         String currentUrl = driver.getCurrentUrl();
 
         if (!currentUrl.endsWith("/admin/payGrade")) {
             clickPayGradesMenu();
         }
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(payGradesTable));
+        waitForLoaderToDisappear();
+
+        wait.until(
+            ExpectedConditions.visibilityOfElementLocated(payGradesTable)
+        );
     }
     
     public boolean isPayGradePresent(String gradeName) {
@@ -399,16 +403,10 @@ public class PayGradesPage extends BasePage {
             wait.until(
                     ExpectedConditions.visibilityOfElementLocated(payGrade)
             );
-
-            System.out.println("Pay Grade found: " + gradeName);
-
             return true;
 
         } catch (TimeoutException e) {
-
-            System.out.println("Pay Grade not found: " + gradeName);
-            System.out.println("Current URL: " + driver.getCurrentUrl());
-
+        	
             return false;
         }
     }

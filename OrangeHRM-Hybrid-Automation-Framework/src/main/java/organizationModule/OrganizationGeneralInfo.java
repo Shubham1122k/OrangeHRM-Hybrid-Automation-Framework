@@ -3,6 +3,7 @@ package organizationModule;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -17,8 +18,10 @@ public class OrganizationGeneralInfo extends BasePage {
 			.xpath("//li[contains(@class,'oxd-topbar-body-nav-tab')][.//span[normalize-space()='Organization']]");
 
 	private final By generalInformationButton = By.xpath("//a[normalize-space()='General Information']");
-
-	private final By editToogle = By.cssSelector("span.oxd-switch-input");
+	private final By editToggleLabel =
+	        By.xpath("//label[.//span[contains(@class,'oxd-switch-input')]]");
+//	private final By editToggle =
+//	        By.cssSelector("span.oxd-switch-input");
 
 	private By organizationName = By.xpath(
 		    "//label[normalize-space()='Organization Name']/ancestor::div[contains(@class,'oxd-input-group')]//input"
@@ -65,10 +68,15 @@ public class OrganizationGeneralInfo extends BasePage {
 		    "//span[contains(@class,'oxd-input-field-error-message') and normalize-space()='Required']"
 		);
 	private By emailError = By.xpath(
-		    "//span[contains(normalize-space(), 'Expected format')]"
+		    "//span[contains(@class,'oxd-input-field-error-message') " +
+		    "and contains(normalize-space(),'Expected format')]"
 		);
-	private By phoneError =
-		    By.xpath("//span[contains(normalize-space(), 'Allows numbers')]");
+	
+	private By phoneError = By.xpath(
+		    "//span[contains(@class,'oxd-input-field-error-message') " +
+		    "and contains(normalize-space(),'Allows numbers')]"
+		);
+
 
 	public OrganizationGeneralInfo(WebDriver driver) {
 		super(driver);
@@ -76,14 +84,37 @@ public class OrganizationGeneralInfo extends BasePage {
 	
 	//Navigate to GeneralInfoPage		
 	public void openGeneralInformationForm() {
-		
-		click(adminElement);
-		click(organizationButton);
-		click(generalInformationButton);
-		click(editToogle);
+	    click(adminElement);
+	    click(organizationButton);
+	    click(generalInformationButton);
 
+	    // Wait until page is loaded
+	    waitForVisibility(organizationName);
 	}
 
+//	public void enterEditMode() {
+//
+//	    WebElement toggle = waitForVisibility(editToggle);
+//
+//	    if (!toggle.isSelected()) {
+//	        toggle.click();
+//	    }
+//
+//	    wait.until(driver ->
+//	        driver.findElement(organizationName).isEnabled()
+//	    );
+//	}
+	public void enterEditMode() {
+
+	    scrollIntoView(editToggleLabel);
+
+	    click(editToggleLabel);
+
+	    wait.until(driver ->
+	        driver.findElement(organizationName).isEnabled()
+	    );
+	}
+	
 	public void editOrganizatioName(String OrganizationName) {
 		replaceText(organizationName, OrganizationName);
 	}
@@ -152,33 +183,37 @@ public class OrganizationGeneralInfo extends BasePage {
 	}
 
 	public void saveEdit() {
-	    click(save);
-	}
+	    waitForLoaderToDisappear();
 
+	    WebElement saveButton = waitForVisibility(save);
+
+	    wait.until(ExpectedConditions.elementToBeClickable(saveButton));
+
+	    saveButton.click();
+	}
+	
 	public String getSuccessMessage() {
 		WebElement message = wait.until(ExpectedConditions.visibilityOfElementLocated(sucessMessage));
 		return message.getText().trim();
 	}
 
+	
+	
 	public boolean isErrorMessageDisplayed() {
-	    return wait.until(
-	        ExpectedConditions.visibilityOfElementLocated(errorMessage)
-	    ).isDisplayed();
+	    return isDisplayed(errorMessage);
 	}
 
 	public boolean isinvalidFormatDisplayed() {
-	    return wait.until(
-	        ExpectedConditions.visibilityOfElementLocated(emailError)
-	    ).isDisplayed();
+	    return isDisplayed(emailError);
 	}
 
 	public boolean isinvalidPhoneFormat() {
-	    return wait.until(
-	        ExpectedConditions.visibilityOfElementLocated(phoneError)
-	    ).isDisplayed();
+	    return isDisplayed(phoneError);
 	}
 	
 	public String getOrganizationName() {
 	    return driver.findElement(organizationName).getAttribute("value");
 	}
+	
+	
 }

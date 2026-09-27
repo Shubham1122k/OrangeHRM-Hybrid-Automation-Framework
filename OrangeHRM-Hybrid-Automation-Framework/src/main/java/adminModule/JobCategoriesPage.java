@@ -1,8 +1,10 @@
 package adminModule;
-import java.time.Duration;
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import base.BasePage;
 
@@ -62,27 +64,51 @@ public class JobCategoriesPage extends BasePage {
 
 	    // Delete one Job Category
 	    public void deleteJobCategory(String name) {
-	        WebElement deleteIcon = wait.until(ExpectedConditions.elementToBeClickable(
-	                By.xpath("//div[text()='" + name + "']/../..//button[i[contains(@class,'bi-trash')]]")));
-	        deleteIcon.click();
+
+	        By deleteIcon = By.xpath(
+	            "//div[normalize-space()='" + name + "']/../..//button[i[contains(@class,'bi-trash')]]"
+	        );
+
+	        WebElement element = wait.until(
+	            ExpectedConditions.elementToBeClickable(deleteIcon)
+	        );
+
+	        element.click();
+
 	        confirmDelete();
 	    }
 
 	    // Select checkbox for multiple delete
 	    public void selectJobCategoryCheckbox(String name) {
+
 	        WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(
 	                By.xpath("//div[text()='" + name + "']/../..//div[@class='oxd-checkbox-wrapper']")));
+
 	        checkbox.click();
 	    }
 
 	    // Delete selected
+//	    public void deleteSelectedCategories() {
+//	        WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
+//	                By.xpath("//button[normalize-space()='Delete Selected']")));
+//	        deleteBtn.click();
+//	        confirmDelete();
+//	    }
+	    
 	    public void deleteSelectedCategories() {
-	        WebElement deleteBtn = wait.until(ExpectedConditions.elementToBeClickable(
-	                By.xpath("//button[normalize-space()='Delete Selected']")));
+
+	        By deleteSelectedBtn =
+	                By.xpath("//button[normalize-space()='Delete Selected']");
+
+	        WebElement deleteBtn = wait.until(
+	                ExpectedConditions.elementToBeClickable(deleteSelectedBtn)
+	        );
+
 	        deleteBtn.click();
+
 	        confirmDelete();
 	    }
-
+	    
 	    // Confirm delete 
 	    private void confirmDelete() {
 	        WebElement confirmBtn = wait.until(ExpectedConditions.elementToBeClickable(
@@ -94,15 +120,37 @@ public class JobCategoriesPage extends BasePage {
 	    
 	 // Verifications
 	    public boolean isSuccessMessageDisplayed() {
-	        return isDisplayed(successToast);
+	        try {
+	            return wait.until(
+	                ExpectedConditions.visibilityOfElementLocated(successToast)
+	            ).isDisplayed();
+
+	        } catch (TimeoutException e) {
+	            return false;
+	        }
 	    }
+	    
 
 	    public boolean isRequiredErrorDisplayed() {
-	        return isDisplayed(requiredError);
+	        try {
+	            return wait.until(
+	                ExpectedConditions.visibilityOfElementLocated(requiredError)
+	            ).isDisplayed();
+
+	        } catch (TimeoutException e) {
+	            return false;
+	        }
 	    }
 
 	    public boolean isAlreadyExistsErrorDisplayed() {
-	        return isDisplayed(alreadyExistsError);
+	        try {
+	            return wait.until(
+	                ExpectedConditions.visibilityOfElementLocated(alreadyExistsError)
+	            ).isDisplayed();
+
+	        } catch (TimeoutException e) {
+	            return false;
+	        }
 	    }
 	     
 		    

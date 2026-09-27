@@ -1,7 +1,5 @@
 package adminTest;
 
-
-
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -13,7 +11,6 @@ import utilities.ConfigReader;
 
 public class EmploymentStatusTest extends TestBase {
 
-    private LogIn login;
     private EmploymentStatusPage empStatusPage;
 
     @BeforeMethod

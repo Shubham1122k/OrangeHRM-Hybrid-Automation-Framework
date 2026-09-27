@@ -1,78 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="0" failed="1" skipped="0">
+<testng-results ignored="0" total="7" passed="7" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2026-08-25T09:27:50 IST" name="Default suite" finished-at="2026-08-25T09:28:26 IST" duration-ms="35451">
+  <suite started-at="2026-09-27T11:46:39 IST" name="Default suite" finished-at="2026-09-27T11:49:56 IST" duration-ms="197240">
     <groups>
     </groups>
-    <test started-at="2026-08-25T09:27:50 IST" name="Default test" finished-at="2026-08-25T09:28:26 IST" duration-ms="35451">
-      <class name="organizationTest.OrganizationGeneralInfoTest">
-        <test-method is-config="true" signature="setup()[pri:0, instance:organizationTest.OrganizationGeneralInfoTest@7c6908d7]" started-at="2026-08-25T09:27:50 IST" name="setup" finished-at="2026-08-25T09:27:59 IST" duration-ms="8506" status="PASS">
+    <test started-at="2026-09-27T11:46:39 IST" name="Default test" finished-at="2026-09-27T11:49:56 IST" duration-ms="197240">
+      <class name="adminTest.WorkShiftsTest">
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:46:39 IST" name="setup" finished-at="2026-09-27T11:46:44 IST" duration-ms="4893" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method is-config="true" signature="setUpPage()[pri:0, instance:organizationTest.OrganizationGeneralInfoTest@7c6908d7]" started-at="2026-08-25T09:27:59 IST" name="setUpPage" finished-at="2026-08-25T09:28:01 IST" duration-ms="2675" status="PASS">
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:46:44 IST" name="initialize" finished-at="2026-09-27T11:46:49 IST" duration-ms="5497" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- setUpPage -->
-        <test-method signature="InvalidBlankEditTest()[pri:0, instance:organizationTest.OrganizationGeneralInfoTest@7c6908d7]" started-at="2026-08-25T09:28:01 IST" name="InvalidBlankEditTest" description="Verify admin can edit general information by leave required field empty" finished-at="2026-08-25T09:28:26 IST" duration-ms="24040" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
-            <message>
-              <![CDATA[Expected condition failed: waiting for visibility of element located by By.xpath: //span[contains(@class,'oxd-input-field-error-message') and normalize-space()='Required'] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.174, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58769}, goog:processID: 6600, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58769/devtoo..., se:cdpVersion: 151.0.7922.174, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 35482c6828bbde3e3811a38b867fdcd5]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for visibility of element located by By.xpath: //span[contains(@class,'oxd-input-field-error-message') and normalize-space()='Required'] (tried for 20 second(s) with 500 milliseconds interval)
-Build info: version: '4.25.0', revision: '8a8aea2337'
-System info: os.name: 'Windows 11', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.10'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 151.0.7922.174, chrome: {chromedriverVersion: 151.0.7922.138 (41fa8244239..., userDataDir: C:\Users\ASUS\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:58769}, goog:processID: 6600, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:58769/devtoo..., se:cdpVersion: 151.0.7922.174, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: 35482c6828bbde3e3811a38b867fdcd5
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at organizationModule.OrganizationGeneralInfo.isErrorMessageDisplayed(OrganizationGeneralInfo.java:164)
-at organizationTest.OrganizationGeneralInfoTest.InvalidBlankEditTest(OrganizationGeneralInfoTest.java:67)
-at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
-at org.testng.internal.invokers.TestInvoker.invokeMethod(TestInvoker.java:687)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethod(TestInvoker.java:230)
-at org.testng.internal.invokers.MethodRunner.runInSequence(MethodRunner.java:63)
-at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:995)
-at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
-at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
-at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
-at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
-at org.testng.TestRunner.privateRun(TestRunner.java:741)
-at org.testng.TestRunner.run(TestRunner.java:616)
-at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
-at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
-at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
-at org.testng.SuiteRunner.run(SuiteRunner.java:312)
-at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
-at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
-at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
-at org.testng.TestNG.runSuites(TestNG.java:1112)
-at org.testng.TestNG.run(TestNG.java:1079)
-at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
-at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
-at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+        </test-method> <!-- initialize -->
+        <test-method signature="addValidWorkShift()[pri:1, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:46:49 IST" name="addValidWorkShift" description="TC-14 Verify Admin can add a new Work Shift with valid details" finished-at="2026-09-27T11:46:56 IST" duration-ms="6345" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- InvalidBlankEditTest -->
-        <test-method is-config="true" signature="tearDown()[pri:0, instance:organizationTest.OrganizationGeneralInfoTest@7c6908d7]" started-at="2026-08-25T09:28:26 IST" name="tearDown" finished-at="2026-08-25T09:28:26 IST" duration-ms="203" status="PASS">
+        </test-method> <!-- addValidWorkShift -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:46:56 IST" name="cleanup" finished-at="2026-09-27T11:47:19 IST" duration-ms="23156" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:19 IST" name="smallPause" finished-at="2026-09-27T11:47:20 IST" duration-ms="1005" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:20 IST" name="tearDown" finished-at="2026-09-27T11:47:20 IST" duration-ms="251" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
-      </class> <!-- organizationTest.OrganizationGeneralInfoTest -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:20 IST" name="setup" finished-at="2026-09-27T11:47:26 IST" duration-ms="5450" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:26 IST" name="initialize" finished-at="2026-09-27T11:47:32 IST" duration-ms="5864" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="addOvernightWorkShift_bugShowsError()[pri:2, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:32 IST" name="addOvernightWorkShift_bugShowsError" description="TC-15 Verify Admin can add an overnight Work Shift " finished-at="2026-09-27T11:47:33 IST" duration-ms="1302" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addOvernightWorkShift_bugShowsError -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:33 IST" name="cleanup" finished-at="2026-09-27T11:47:36 IST" duration-ms="3450" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:36 IST" name="smallPause" finished-at="2026-09-27T11:47:37 IST" duration-ms="1007" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:37 IST" name="tearDown" finished-at="2026-09-27T11:47:38 IST" duration-ms="206" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:38 IST" name="setup" finished-at="2026-09-27T11:47:41 IST" duration-ms="3851" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:41 IST" name="initialize" finished-at="2026-09-27T11:47:47 IST" duration-ms="5844" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="cannotAddWithMissingMandatoryFields()[pri:3, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:47 IST" name="cannotAddWithMissingMandatoryFields" description="TC-16 Verify Admin cannot add Work Shift with missing mandatory fields" finished-at="2026-09-27T11:47:48 IST" duration-ms="1254" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cannotAddWithMissingMandatoryFields -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:48 IST" name="cleanup" finished-at="2026-09-27T11:47:52 IST" duration-ms="3443" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:52 IST" name="smallPause" finished-at="2026-09-27T11:47:53 IST" duration-ms="1004" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:53 IST" name="tearDown" finished-at="2026-09-27T11:47:53 IST" duration-ms="222" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:53 IST" name="setup" finished-at="2026-09-27T11:47:57 IST" duration-ms="3869" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:47:57 IST" name="initialize" finished-at="2026-09-27T11:48:03 IST" duration-ms="6392" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="cannotAddDuplicateName()[pri:4, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:03 IST" name="cannotAddDuplicateName" description="TC-17 Verify Admin cannot add Work Shift with duplicate name" finished-at="2026-09-27T11:48:05 IST" duration-ms="1321" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cannotAddDuplicateName -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:05 IST" name="cleanup" finished-at="2026-09-27T11:48:08 IST" duration-ms="3477" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:08 IST" name="smallPause" finished-at="2026-09-27T11:48:09 IST" duration-ms="1012" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:09 IST" name="tearDown" finished-at="2026-09-27T11:48:09 IST" duration-ms="251" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:09 IST" name="setup" finished-at="2026-09-27T11:48:14 IST" duration-ms="4696" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:14 IST" name="initialize" finished-at="2026-09-27T11:48:20 IST" duration-ms="5866" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="editDayShiftToDayShift2()[pri:5, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:20 IST" name="editDayShiftToDayShift2" description="TC-18 Verify Admin can edit an existing Work Shift" finished-at="2026-09-27T11:48:24 IST" duration-ms="3647" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- editDayShiftToDayShift2 -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:24 IST" name="cleanup" finished-at="2026-09-27T11:48:28 IST" duration-ms="4073" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:28 IST" name="smallPause" finished-at="2026-09-27T11:48:29 IST" duration-ms="1015" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:29 IST" name="tearDown" finished-at="2026-09-27T11:48:29 IST" duration-ms="281" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:29 IST" name="setup" finished-at="2026-09-27T11:48:33 IST" duration-ms="3967" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:33 IST" name="initialize" finished-at="2026-09-27T11:48:39 IST" duration-ms="5796" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="deleteSingleWorkShift()[pri:6, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:39 IST" name="deleteSingleWorkShift" description="TC-19 Verify Admin can delete an existing Work Shift" finished-at="2026-09-27T11:48:40 IST" duration-ms="1193" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteSingleWorkShift -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:48:40 IST" name="cleanup" finished-at="2026-09-27T11:49:03 IST" duration-ms="23147" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:03 IST" name="smallPause" finished-at="2026-09-27T11:49:04 IST" duration-ms="1007" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:04 IST" name="tearDown" finished-at="2026-09-27T11:49:04 IST" duration-ms="238" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+        <test-method is-config="true" signature="setup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:04 IST" name="setup" finished-at="2026-09-27T11:49:09 IST" duration-ms="4895" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- setup -->
+        <test-method is-config="true" signature="initialize()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:09 IST" name="initialize" finished-at="2026-09-27T11:49:30 IST" duration-ms="21153" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- initialize -->
+        <test-method signature="deleteMultipleWorkShifts()[pri:7, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:30 IST" name="deleteMultipleWorkShifts" description="TC-20 Verify Admin can delete multiple Work Shifts at the same time" finished-at="2026-09-27T11:49:32 IST" duration-ms="1319" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- deleteMultipleWorkShifts -->
+        <test-method is-config="true" signature="cleanup()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:32 IST" name="cleanup" finished-at="2026-09-27T11:49:55 IST" duration-ms="23275" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- cleanup -->
+        <test-method is-config="true" signature="smallPause()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:55 IST" name="smallPause" finished-at="2026-09-27T11:49:56 IST" duration-ms="1009" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- smallPause -->
+        <test-method is-config="true" signature="tearDown()[pri:0, instance:adminTest.WorkShiftsTest@3857f613]" started-at="2026-09-27T11:49:56 IST" name="tearDown" finished-at="2026-09-27T11:49:56 IST" duration-ms="235" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- tearDown -->
+      </class> <!-- adminTest.WorkShiftsTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

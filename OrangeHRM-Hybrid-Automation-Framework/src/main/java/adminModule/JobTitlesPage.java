@@ -9,11 +9,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import base.BasePage;
 
-
-
 public class JobTitlesPage extends BasePage{
     
-
     public JobTitlesPage(WebDriver driver) {
         super(driver);
     }

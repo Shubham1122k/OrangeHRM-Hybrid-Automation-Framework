@@ -11,8 +11,7 @@ import utilities.ConfigReader;
 
 public class JobTitlesTest extends TestBase {
 	
-    private LogIn login;
-    JobTitlesPage jobTitles;
+    private JobTitlesPage jobTitles;
 
     private final String title       = "QA AutomationEngineer";
     private final String description = "Owns test Strategy and Automation";
@@ -21,13 +20,9 @@ public class JobTitlesTest extends TestBase {
 
     @BeforeMethod
 	    public void initialize()  {
-	    	login = new LogIn(getDriver());
+  		
 	        jobTitles = new JobTitlesPage(getDriver());
-	        
-	        login.Login(ConfigReader.getProperty("username"),
-	        		ConfigReader.getProperty("password"));
-	        
-	        Assert.assertTrue(login.isLogedIn(), "Admin login failed");
+	        loginAsAdmin();
 	        jobTitles.goToJobTitle();
 	    }
 
@@ -43,7 +38,6 @@ public class JobTitlesTest extends TestBase {
 	        jobTitles.typeDescription(description);
 	        jobTitles.uploadSpecification(specFilePath);
 	        jobTitles.typeNote(note);
-	
 	        jobTitles.clickSaveButton();
 	
 	        Assert.assertTrue(jobTitles.isSuccessToastDisplayed(),

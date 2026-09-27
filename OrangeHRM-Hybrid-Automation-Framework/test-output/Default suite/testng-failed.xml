@@ -3,14 +3,14 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="organizationTest.OrganizationGeneralInfoTest">
+      <class name="adminTest.JobCategoriesTest">
         <methods>
-          <include name="setUpPage"/>
-          <include name="InvalidBlankEditTest"/>
+          <include name="testDeleteMultipleJobCategories"/>
+          <include name="initialize"/>
           <include name="tearDown"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- organizationTest.OrganizationGeneralInfoTest -->
+      </class> <!-- adminTest.JobCategoriesTest -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
