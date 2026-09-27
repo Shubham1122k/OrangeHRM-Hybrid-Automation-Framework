@@ -1,14 +1,13 @@
 package baseTest;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
 import loginModule.LogIn;
 import utilities.ConfigReader;
+import utilities.DriverFactory;
 
 public class TestBase {
 
@@ -17,27 +16,20 @@ public class TestBase {
     public static WebDriver getDriver() {
         return driver.get();
     }
-
+    
     @BeforeMethod(alwaysRun = true)
     public void setup() {
 
     	String browser = ConfigReader.getProperty("browser");
 
-        if (browser.equalsIgnoreCase("chrome")) {
-
-            WebDriverManager.chromedriver().setup();
-            driver.set(new ChromeDriver());
-
-        } else {
-            throw new IllegalArgumentException("Unsupported browser: " + browser);
-        }
+    	driver.set(DriverFactory.createDriver(browser));
 
         getDriver().manage().window().maximize();
 
-        getDriver().get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
+        getDriver().get(ConfigReader.getProperty("url"));
     }
 
-    // Reusable login method
+    // Reusable login method /used across all @beforeMethods in classes
     protected void loginAsAdmin() {
 
         LogIn login = new LogIn(getDriver());
