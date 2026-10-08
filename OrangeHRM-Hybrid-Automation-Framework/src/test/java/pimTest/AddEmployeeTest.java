@@ -4,10 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import pimModule.EmployeeListPage;
 
-public class AddEmployeeTest extends TestBase {
+public class AddEmployeeTest extends baseTest {
 
 	EmployeeListPage emp;
 

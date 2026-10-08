@@ -5,11 +5,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import adminModule.JobTitlesPage;
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.ConfigReader;
 
-public class JobTitlesTest extends TestBase {
+public class JobTitlesTest extends baseTest {
 	
     private JobTitlesPage jobTitles;
 

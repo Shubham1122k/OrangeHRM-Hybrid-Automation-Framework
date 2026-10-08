@@ -4,12 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import organizationModule.OrganizationLocations;
 
-public class OrganizationLocationAddTest extends TestBase {
-	private LogIn login;
+public class OrganizationLocationAddTest extends baseTest {
+	
 	private OrganizationLocations Location;
 
 	@BeforeMethod(alwaysRun = true)

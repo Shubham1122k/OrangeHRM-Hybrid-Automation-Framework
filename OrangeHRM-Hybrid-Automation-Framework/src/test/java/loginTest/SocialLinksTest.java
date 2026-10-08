@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.BrowserUtils;
 
-public class SocialLinksTest extends TestBase {
+public class SocialLinksTest extends baseTest {
 
     LogIn login;
 

@@ -4,10 +4,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import organizationModule.OrganizationLocationsEdit;
 
-public class OrganizationLocationEditTest extends TestBase {
+public class OrganizationLocationEditTest extends baseTest {
 	private OrganizationLocationsEdit Edit;
 	@BeforeClass
 	public void setUpPage() {

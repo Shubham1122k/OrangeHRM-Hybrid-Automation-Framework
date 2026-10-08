@@ -1,0 +1,240 @@
+<html>
+<head>
+<title>TestNG:  OrangeHRM ParallelClasses</title>
+<link href="../testng.css" rel="stylesheet" type="text/css" />
+<link href="../my-testng.css" rel="stylesheet" type="text/css" />
+
+<style type="text/css">
+.log { display: none;} 
+.stack-trace { display: none;} 
+</style>
+<script type="text/javascript">
+<!--
+function flip(e) {
+  current = e.style.display;
+  if (current == 'block') {
+    e.style.display = 'none';
+    return 0;
+  }
+  else {
+    e.style.display = 'block';
+    return 1;
+  }
+}
+
+function toggleBox(szDivId, elem, msg1, msg2)
+{
+  var res = -1;  if (document.getElementById) {
+    res = flip(document.getElementById(szDivId));
+  }
+  else if (document.all) {
+    // this is the way old msie versions work
+    res = flip(document.all[szDivId]);
+  }
+  if(elem) {
+    if(res == 0) elem.innerHTML = msg1; else elem.innerHTML = msg2;
+  }
+
+}
+
+function toggleAllBoxes() {
+  if (document.getElementsByTagName) {
+    d = document.getElementsByTagName('div');
+    for (i = 0; i < d.length; i++) {
+      if (d[i].className == 'log') {
+        flip(d[i]);
+      }
+    }
+  }
+}
+
+// -->
+</script>
+
+</head>
+<body>
+<h2 align='center'>OrangeHRM ParallelClasses</h2><table border='1' align="center">
+<tr>
+<td>Tests passed/Failed/Skipped:</td><td>32/0/0</td>
+</tr><tr>
+<td>Started on:</td><td>Thu Oct 08 16:39:57 IST 2026</td>
+</tr>
+<tr><td>Total time:</td><td>327 seconds (327990 ms)</td>
+</tr><tr>
+<td>Included groups:</td><td></td>
+</tr><tr>
+<td>Excluded groups:</td><td></td>
+</tr>
+</table><p/>
+<small><i>(Hover the method name to see the test class name)</i></small><p/>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
+<tr><td><b>Test method</b></td>
+<td><b>Attribute(s)</b></td>
+<td width="30%"><b>Exception</b></td>
+<td width="10%"><b>Time (seconds)</b></td>
+<td><b>Instance</b></td>
+</tr>
+<tr>
+<td title='adminTest.EmploymentStatusTest.testDeleteEmploymentStatus()'><b>testDeleteEmploymentStatus</b><br>Test class: adminTest.EmploymentStatusTest</td>
+<td></td>
+<td>19</td>
+<td>adminTest.EmploymentStatusTest@4009e306</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.deleteSingleWorkShift()'><b>deleteSingleWorkShift</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-19 Verify Admin can delete an existing Work Shift</td>
+<td></td>
+<td>0</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testSpecialCharactersInJobCategory()'><b>testSpecialCharactersInJobCategory</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-13 Verify if special characters are allowed or restricted in job category name</td>
+<td></td>
+<td>3</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.addOvernightWorkShift_bugShowsError()'><b>addOvernightWorkShift_bugShowsError</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-15 Verify Admin can add an overnight Work Shift </td>
+<td></td>
+<td>3</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.checkRequiredFields()'><b>checkRequiredFields</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-02 Verify required field validation on Add Pay Grade</td>
+<td></td>
+<td>9</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.JobTitlesTest.deleteJob()'><b>deleteJob</b><br>Test class: adminTest.JobTitlesTest<br>Test method: TC-16 Delete single job</td>
+<td></td>
+<td>2</td>
+<td>adminTest.JobTitlesTest@5609159b</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testJobCategoryFieldCannotBeBlank()'><b>testJobCategoryFieldCannotBeBlank</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-08 Verify system behavior when trying to add a Job Category without entering any data</td>
+<td></td>
+<td>1</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testAddJobCategoryValidInput()'><b>testAddJobCategoryValidInput</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-07 Verify that a Job category can be added successfully with valid input</td>
+<td></td>
+<td>3</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.editDayShiftToDayShift2()'><b>editDayShiftToDayShift2</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-18 Verify Admin can edit an existing Work Shift</td>
+<td></td>
+<td>3</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testDeleteMultipleJobCategories()'><b>testDeleteMultipleJobCategories</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-12 Verify multiple job categories can be deleted simultaneously</td>
+<td></td>
+<td>15</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.JobTitlesTest.addJobTitle()'><b>addJobTitle</b><br>Test class: adminTest.JobTitlesTest<br>Test method: TC-13 Add valid job title</td>
+<td></td>
+<td>17</td>
+<td>adminTest.JobTitlesTest@5609159b</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.editCurrencyDetails()'><b>editCurrencyDetails</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-27 Edit Currency Min/Max values</td>
+<td></td>
+<td>10</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testDuplicateJobCategoryNotAllowed()'><b>testDuplicateJobCategoryNotAllowed</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-09 Verify the system does not allow adding duplicate job categories</td>
+<td></td>
+<td>2</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.deleteMultipleWorkShifts()'><b>deleteMultipleWorkShifts</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-20 Verify Admin can delete multiple Work Shifts at the same time</td>
+<td></td>
+<td>1</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testDeleteSingleJobCategory()'><b>testDeleteSingleJobCategory</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-11 Verify a job category can be deleted individually</td>
+<td></td>
+<td>8</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.deleteAllPayGrades()'><b>deleteAllPayGrades</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-25 Delete all Pay Grades</td>
+<td></td>
+<td>1</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.deleteAllCurrencies()'><b>deleteAllCurrencies</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-23 Delete all currencies</td>
+<td></td>
+<td>12</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.EmploymentStatusTest.testEmploymentStatusFieldCannotBeBlank()'><b>testEmploymentStatusFieldCannotBeBlank</b><br>Test class: adminTest.EmploymentStatusTest</td>
+<td></td>
+<td>1</td>
+<td>adminTest.EmploymentStatusTest@4009e306</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.cannotAddDuplicateName()'><b>cannotAddDuplicateName</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-17 Verify Admin cannot add Work Shift with duplicate name</td>
+<td></td>
+<td>2</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.addPayGrade()'><b>addPayGrade</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-18+19 Add valid pay grade + Add currency to pay grade</td>
+<td></td>
+<td>5</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.addValidWorkShift()'><b>addValidWorkShift</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-14 Verify Admin can add a new Work Shift with valid details</td>
+<td></td>
+<td>6</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.JobTitlesTest.deleteAllJobs()'><b>deleteAllJobs</b><br>Test class: adminTest.JobTitlesTest<br>Test method: TC-17 Delete all selected jobs</td>
+<td></td>
+<td>2</td>
+<td>adminTest.JobTitlesTest@5609159b</td></tr>
+<tr>
+<td title='adminTest.EmploymentStatusTest.testAddEmploymentStatus()'><b>testAddEmploymentStatus</b><br>Test class: adminTest.EmploymentStatusTest</td>
+<td></td>
+<td>3</td>
+<td>adminTest.EmploymentStatusTest@4009e306</td></tr>
+<tr>
+<td title='adminTest.JobCategoriesTest.testEditJobCategory()'><b>testEditJobCategory</b><br>Test class: adminTest.JobCategoriesTest<br>Test method: TC-10 Verify an admin can edit an existing job category</td>
+<td></td>
+<td>4</td>
+<td>adminTest.JobCategoriesTest@57250572</td></tr>
+<tr>
+<td title='adminTest.WorkShiftsTest.cannotAddWithMissingMandatoryFields()'><b>cannotAddWithMissingMandatoryFields</b><br>Test class: adminTest.WorkShiftsTest<br>Test method: TC-16 Verify Admin cannot add Work Shift with missing mandatory fields</td>
+<td></td>
+<td>1</td>
+<td>adminTest.WorkShiftsTest@17a7f733</td></tr>
+<tr>
+<td title='adminTest.JobTitlesTest.checkRequiredFields()'><b>checkRequiredFields</b><br>Test class: adminTest.JobTitlesTest<br>Test method: TC-14 Verify required fields</td>
+<td></td>
+<td>40</td>
+<td>adminTest.JobTitlesTest@5609159b</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.verifyNegativeSalaryWarning()'><b>verifyNegativeSalaryWarning</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-21 Negative salary values</td>
+<td></td>
+<td>5</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.deleteOneCurrency()'><b>deleteOneCurrency</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-22 Delete single currency</td>
+<td></td>
+<td>9</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.JobTitlesTest.editJobTitle()'><b>editJobTitle</b><br>Test class: adminTest.JobTitlesTest<br>Test method: TC-15 Edit Job Title</td>
+<td></td>
+<td>6</td>
+<td>adminTest.JobTitlesTest@5609159b</td></tr>
+<tr>
+<td title='adminTest.EmploymentStatusTest.testEditEmploymentStatus()'><b>testEditEmploymentStatus</b><br>Test class: adminTest.EmploymentStatusTest</td>
+<td></td>
+<td>7</td>
+<td>adminTest.EmploymentStatusTest@4009e306</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.verifyInvalidSalaryWarning()'><b>verifyInvalidSalaryWarning</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-20 Maximum salary smaller than minimum salary</td>
+<td></td>
+<td>5</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+<tr>
+<td title='adminTest.PayGradesTest.deleteOnePayGrade()'><b>deleteOnePayGrade</b><br>Test class: adminTest.PayGradesTest<br>Test method: TC-24 Delete single Pay Grade</td>
+<td></td>
+<td>11</td>
+<td>adminTest.PayGradesTest@2118cddf</td></tr>
+</table><p>
+</body>
+</html>

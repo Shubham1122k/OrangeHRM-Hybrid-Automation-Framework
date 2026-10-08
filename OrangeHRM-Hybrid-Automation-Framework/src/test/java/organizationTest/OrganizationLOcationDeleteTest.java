@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import organizationModule.OrganizationLocations;
 import organizationModule.OrganizationalLocationsDelete;
 
-public class OrganizationLOcationDeleteTest extends TestBase {
+public class OrganizationLOcationDeleteTest extends baseTest {
 
     private OrganizationalLocationsDelete delete;
     private OrganizationLocations location;

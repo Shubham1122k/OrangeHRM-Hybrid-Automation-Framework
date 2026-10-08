@@ -3,7 +3,7 @@ package loginModule;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-import base.BasePage;
+import basePage.BasePage;
 
 public class LogIn extends BasePage {
 

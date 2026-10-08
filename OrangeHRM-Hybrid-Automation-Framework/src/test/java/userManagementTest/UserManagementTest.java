@@ -4,11 +4,11 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import userManagement.UserManagement;
 
-public class UserManagementTest extends TestBase {
+public class UserManagementTest extends baseTest {
 	
     private UserManagement userManagement;
 

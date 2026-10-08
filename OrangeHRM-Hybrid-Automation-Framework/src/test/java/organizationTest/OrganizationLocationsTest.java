@@ -8,11 +8,11 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import organizationModule.LocationSearchReset;
 import organizationModule.OrganizationLocations;
 
-public class OrganizationLocationsTest extends TestBase {
+public class OrganizationLocationsTest extends baseTest {
 	private OrganizationLocations Location;
 	private LocationSearchReset Search;
 

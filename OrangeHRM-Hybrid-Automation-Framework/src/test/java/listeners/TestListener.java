@@ -5,7 +5,7 @@ package listeners;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import utilities.ScreenshotUtils;
 
 public class TestListener implements ITestListener {
@@ -14,7 +14,7 @@ public class TestListener implements ITestListener {
     public void onTestFailure(ITestResult result) {
 
     	ScreenshotUtils.captureScreenshot(
-    	        TestBase.getDriver(),
+    	        baseTest.getDriver(),
     	        result.getName()
     	);
 

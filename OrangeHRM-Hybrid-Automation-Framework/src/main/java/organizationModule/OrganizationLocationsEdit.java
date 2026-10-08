@@ -10,7 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import base.BasePage;
+import basePage.BasePage;
 
 public class OrganizationLocationsEdit extends BasePage {
 	

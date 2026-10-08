@@ -7,12 +7,12 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.ExcelUtil;
 
 
-public class LogInTest extends TestBase {
+public class LogInTest extends baseTest {
     LogIn login;
 
     @BeforeMethod

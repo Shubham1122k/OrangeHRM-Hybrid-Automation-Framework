@@ -8,8 +8,11 @@ import org.testng.annotations.BeforeMethod;
 import loginModule.LogIn;
 import utilities.ConfigReader;
 import utilities.DriverFactory;
+import org.testng.annotations.Listeners;
+import listeners.TestListener;
 
-public class TestBase {
+@Listeners(TestListener.class)
+public class baseTest {
 
     private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 

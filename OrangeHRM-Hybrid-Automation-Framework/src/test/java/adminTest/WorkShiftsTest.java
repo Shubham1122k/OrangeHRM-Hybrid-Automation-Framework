@@ -7,11 +7,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import adminModule.WorkShiftsPage;
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.ConfigReader;
 
-public class WorkShiftsTest extends TestBase {
+public class WorkShiftsTest extends baseTest {
 	LogIn login;
     WorkShiftsPage workShiftPage;
 

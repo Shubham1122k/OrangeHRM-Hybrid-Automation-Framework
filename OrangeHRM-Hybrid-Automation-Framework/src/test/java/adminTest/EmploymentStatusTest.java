@@ -5,11 +5,11 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import adminModule.EmploymentStatusPage;
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.ConfigReader;
 
-public class EmploymentStatusTest extends TestBase {
+public class EmploymentStatusTest extends baseTest {
 
     private EmploymentStatusPage empStatusPage;
 

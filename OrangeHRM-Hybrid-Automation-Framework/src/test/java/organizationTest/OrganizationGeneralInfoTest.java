@@ -4,12 +4,12 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import organizationModule.OrganizationGeneralInfo;
 import utilities.ConfigReader;
 
-public class OrganizationGeneralInfoTest extends TestBase {
+public class OrganizationGeneralInfoTest extends baseTest {
 	
 	private LogIn login;
 	private OrganizationGeneralInfo organization;

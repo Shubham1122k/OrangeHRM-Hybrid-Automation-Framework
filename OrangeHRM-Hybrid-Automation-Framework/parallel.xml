@@ -9,11 +9,9 @@
     <test name="OrangeHRM ParallelClasses">
 
         <packages>
-            <package name="loginTest"/>
+            
             <package name="adminTest"/>
-            <package name="oraganizationTest"/>
-            <package name="pimTest"/>
-            <package name="userManagementTest"/>
+            
         </packages>
 
     </test>

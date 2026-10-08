@@ -13,7 +13,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import base.BasePage;
+import basePage.BasePage;
 
 //This Page is present in the Admin Section 
 public class UserManagement extends BasePage {

@@ -6,11 +6,11 @@ import org.testng.annotations.Test;
 
 import adminModule.JobTitlesPage;
 import adminModule.PayGradesPage;
-import baseTest.TestBase;
+import baseTest.baseTest;
 import loginModule.LogIn;
 import utilities.ConfigReader;
 
-public class PayGradesTest extends TestBase {
+public class PayGradesTest extends baseTest {
 	
     private PayGradesPage payGrades;
 

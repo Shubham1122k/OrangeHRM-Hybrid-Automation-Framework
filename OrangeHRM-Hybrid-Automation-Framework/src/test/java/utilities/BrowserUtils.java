@@ -2,9 +2,9 @@ package utilities;
 
 import java.time.Duration;
 
-import baseTest.TestBase;
+import baseTest.baseTest;
 
-public class BrowserUtils extends TestBase {
+public class BrowserUtils extends baseTest {
 
     // Wait until a new tab/window opens
     public static void waitForTabToOpen() {

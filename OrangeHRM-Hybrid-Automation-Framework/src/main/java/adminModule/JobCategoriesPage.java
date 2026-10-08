@@ -6,7 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-import base.BasePage;
+import basePage.BasePage;
 
 public class JobCategoriesPage extends BasePage {
 	
